@@ -6,7 +6,7 @@
 #    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
-#    Updated: 2014/02/17 14:49:08 by croy             ###   ########.fr        #
+#    Updated: 2014/02/17 16:10:42 by croy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ SRCS =	main.c \
 		ft_atoi.c \
 		ft_strcmp.c \
 		get_next_line.c \
-		ft_strsplit.c
+		ft_strsplit.c \
+		ft_putstr_fd.c \
+		ft_prompt.c
 
 IFLAGS = -Wall -Wextra -Werror -Iincludes
 

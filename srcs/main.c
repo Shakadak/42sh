@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:04:14 by kelickel          #+#    #+#             */
-/*   Updated: 2014/02/17 11:48:04 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/02/17 16:15:02 by croy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	main(void)
 	char	*str;
 	char	**tab;
 
-	write(1, "42sh>", 5);
+	ft_prompt();
 	while (get_next_line(0, &str) != 0)
 	{
 		tab = ft_strsplit(str, ' ');
 		if (ft_builtins(tab) == 1)
 			write(1, "exe\n", 4);
-		write(1, "42sh>", 5);
+		ft_prompt();
 	}
 	return (0);
 }

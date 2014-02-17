@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:44:28 by kelickel          #+#    #+#             */
-/*   Updated: 2014/02/17 14:40:49 by croy             ###   ########.fr       */
+/*   Updated: 2014/02/17 16:10:13 by croy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int		ft_exit(char **cmd);
 ** Useful functions for 42sh
 */
 
+void	ft_prompt(void);
+
+void	ft_putstr_fd(char const *str, int fd);
 int		ft_atoi(const char *str);
 int		ft_strcmp(char *s1, char *s2);
 int		get_next_line(int fd, char **line);
