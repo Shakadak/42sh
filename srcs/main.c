@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:13:34 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/24 16:45:51 by cheron           ###   ########.fr       */
+/*   Updated: 2014/02/24 18:08:35 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int				main(void)
 
 	dat.env = ft_cpenv();
 	ft_put_prompt(dat.env);
-	while ((ret = get_next_line(0, &buf))
-		   && (ft_strcmp(ft_strtrim(buf), "exit") != 0))
+	while ((ret = get_next_line(0, &buf)) == 1)
 	{
 		dat = ft_run_commands(dat, buf);
 		free(buf);
