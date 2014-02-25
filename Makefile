@@ -1,47 +1,76 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
+#    By: mde-jesu <mde-jesu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
-#    Updated: 2014/02/17 16:10:42 by croy             ###   ########.fr        #
+#    Created: 2013/12/21 18:01:32 by mde-jesu          #+#    #+#              #
+#    Updated: 2014/02/25 12:06:29 by mde-jesu         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
-NAME =	42sh
+NAME = 42sh
+SRC = main.c \
+	builtins.c \
+	ft_prompt.c
 
-SRCS =	main.c \
-		builtins.c \
-		ft_atoi.c \
-		ft_strcmp.c \
-		get_next_line.c \
-		ft_strsplit.c \
-		ft_putstr_fd.c \
-		ft_prompt.c
+LIBSH = ./libsh/libsh.a
+SRCDIR = ./srcs
+OBJDIR = ./objs
+INCDIR = -I./includes -I./libsh/includes
+LIB_CALL = -L./libsh -lft
 
-IFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = -Wall -Werror -Wextra -ansi -pedantic -pedantic-errors
 
-CC = gcc $(IFLAGS)
+ifeq ($(W),)
+	CC = gcc
+	CFLAGS += -O3
+else
+	CC = clang
+	CFLAGS += -ggdb3 -fstack-protector-all -Wshadow -Wunreachable-code \
+			-Wstack-protector -pedantic-errors -O0 -W -Wundef -fno-common \
+			-Wfatal-errors -Wstrict-prototypes -Wmissing-prototypes -pedantic \
+			-Wwrite-strings -Wunknown-pragmas -Wdeclaration-after-statement \
+			-Wold-style-definition -Wmissing-field-initializers -Wfloat-equal \
+			-Wpointer-arith -Wnested-externs -Wstrict-overflow=5 -fno-common \
+			-Wno-missing-field-initializers -Wswitch-default -Wswitch-enum \
+			-Wbad-function-cast -Wredundant-decls -fno-omit-frame-pointer
+endif
 
-OBJS = $(SRCS:.c=.o)
+LD = $(CC)
 
-all: $(NAME)
+OBJS = $(SRC:.c=.o)
+OBJS_PREF = $(addprefix $(OBJDIR)/, $(OBJS))
 
-$(NAME): $(OBJS)
-		@echo "Creation de l'executable \033[1;34m$(NAME)\033[0m"
-		$(CC) -o $(NAME) $(OBJS)
+all: $(LIBSH) $(OBJDIR) $(NAME)
 
-%.o: srcs/%.c includes/sh.h
-	$(CC) -c $<
+$(OBJDIR):
+	mkdir $(OBJDIR)
+
+$(NAME): $(OBJS_PREF)
+	@$(LD) -o $@ $^ $(LIB_CALL) $(INCDIR)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@$(CC) -o $@ -c $< $(CFLAGS) $(INCDIR)
 
 clean:
-		@echo "Remove \033[1;30m$(O)\033[0m"
-		rm -f $(OBJS)
+	@rm -f $(OBJS_PREF)
 
-fclean:	clean
-		@echo "Remove \033[1;31m$(NAME)\033[0m"
-		rm -f $(NAME)
+fclean: clean
+	@rm -f $(NAME)
 
 re: fclean all
+
+$(LIBSH):
+	@( $(MAKE) all -C ./libsh)
+
+clean-ft:
+	@( $(MAKE) clean -C ./libsh )
+
+fclean-ft:
+	@( $(MAKE) fclean -C ./libsh )
+
+re-ft: fclean-ft $(LIBSH)
+
+.PHONY: clean fclean re all clean-ft fclean-ft re-ft
