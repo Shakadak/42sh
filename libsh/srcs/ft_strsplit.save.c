@@ -6,11 +6,11 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 09:39:01 by kelickel          #+#    #+#             */
-/*   Updated: 2014/02/17 11:44:13 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/02/25 12:16:27 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "sh.h"
+#include "libsh.h"
 
 int			nbr_word(char const *s, char c)
 {

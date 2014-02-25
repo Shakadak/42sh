@@ -6,25 +6,24 @@
 /*   By: croy <croy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 16:06:00 by croy              #+#    #+#             */
-/*   Updated: 2014/02/17 16:13:08 by croy             ###   ########.fr       */
+/*   Updated: 2014/02/25 12:23:09 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libsh.h"
 
-static void	ft_putchar_fd(char c, int fd)
+size_t	ft_putchar_fd(char c, int fd)
 {
 	write (fd, &c, 1);
+	return (1);
 }
 
-void		ft_putstr_fd(char const *str, int fd)
+size_t	ft_putstr_fd(char const *str, int fd)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
-	{
-		ft_putchar_fd(str[i], fd);
-		i++;
-	}
+	while (str[i])
+		i += ft_putchar_fd(str[i], fd);
+	return (i);
 }
