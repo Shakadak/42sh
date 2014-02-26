@@ -6,7 +6,7 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/26 16:13:36 by cheron            #+#    #+#              #
-#    Updated: 2014/02/26 18:39:03 by cheron           ###   ########.fr        #
+#    Updated: 2014/02/26 20:42:09 by cheron           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,7 +24,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 NAME = 42sh
 
 OBJ_DIR = obj
-SRC_DIR = srcs/
+SRC_DIR = srcs
 
 SRC = 	$(addprefix squel/, \
 				main.c \
@@ -40,7 +40,10 @@ SRC = 	$(addprefix squel/, \
 				ft_unsetenv.c)
 
 OBJ = $(SRC:.c=.o)
-POBJ = $(addprefix $(OBJ_DIR)/, $(OBJ))
+
+POBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(OBJ)))
+
+COMPILE = $(addprefix $(OBJ_DIR)/, $(OBJ))
 
 all: $(LIBFT) $(OBJ_DIR) $(NAME)
 
@@ -48,9 +51,9 @@ $(LIBFT):
 	@echo "\nCompilation of objects for "$(LIBFT)
 	@($(MAKE) -C $(LIBFT_DIR))
 
-$(NAME): $(POBJ) $(LIBFT)
+$(NAME): $(COMPILE) $(LIBFT)
 	@echo "\nLinking "$(NAME)""
-	@$(CC) $(CFLAGS) $(OFLAGS) -o $(NAME) $^ \
+	@$(CC) $(CFLAGS) $(OFLAGS) -o $(NAME) $(POBJ) \
 	-L$(LIBFT_DIR) -lft -I$(INCLUDES_DIR)
 	@echo "\n\x1b[32;01mdone!\x1b[0m"
 
@@ -66,7 +69,7 @@ fclean: clean
 re: fclean all
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES_DIR) | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INCLUDES_DIR)
+	@$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $(OBJ_DIR)/$(notdir $@) -I $(INCLUDES_DIR)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
