@@ -6,15 +6,15 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 14:00:21 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/02 16:26:41 by cheron           ###   ########.fr       */
+/*   Updated: 2014/02/26 15:59:23 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <dirent.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "libft.h"
-#include "ft_minishell.h"
+#include <libft.h>
+#include "../ft_minishell.h"
 
 static void	ft_change_env(t_dat *dat)
 {

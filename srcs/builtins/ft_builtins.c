@@ -6,12 +6,12 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 15:27:37 by cheron            #+#    #+#             */
-/*   Updated: 2014/01/24 15:01:07 by cheron           ###   ########.fr       */
+/*   Updated: 2014/02/26 15:59:22 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "ft_minishell.h"
+#include "../ft_minishell.h"
 
 void		ft_env(t_dat *dat)
 {

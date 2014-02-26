@@ -6,14 +6,14 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:59:33 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/24 16:46:12 by cheron           ###   ########.fr       */
+/*   Updated: 2014/02/26 16:25:40 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <libft.h>
-#include "ft_minishell.h"
+#include "../ft_minishell.h"
 
 static void		ft_proceed_cmd(char *cmd, t_dat *dat);
 static int		ft_check_builtin(char *cmd, t_dat *dat);

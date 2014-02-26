@@ -6,13 +6,13 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 16:41:56 by cheron            #+#    #+#             */
-/*   Updated: 2014/01/24 17:06:34 by cheron           ###   ########.fr       */
+/*   Updated: 2014/02/26 15:59:24 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <libft.h>
-#include "ft_minishell.h"
+#include "../ft_minishell.h"
 
 static int		ft_getnewsize(t_dat *dat, char **cmd_split);
 

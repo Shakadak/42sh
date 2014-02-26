@@ -6,14 +6,14 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 14:14:33 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/02 15:52:06 by cheron           ###   ########.fr       */
+/*   Updated: 2014/02/26 15:59:23 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "ft_minishell.h"
+#include "../ft_minishell.h"
 
 void	ft_check_cd(char *dir)
 {
