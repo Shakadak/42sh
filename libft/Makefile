@@ -6,15 +6,18 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 17:06:50 by cheron            #+#    #+#              #
-#    Updated: 2014/02/26 19:23:18 by cheron           ###   ########.fr        #
+#    Updated: 2014/02/26 20:34:39 by cheron           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 CC = gcc
 NAME = libft.a
-INCLUDES_DIR = includes/
+INCLUDES_DIR = includes
 RM = rm -rf
 AR = ar -crus
+
+SRC_DIR = srcs
+OBJ_DIR = obj
 
 SRC =	$(addprefix ft_mem/, \
 		ft_memchr.c ft_memccpy.c ft_memmove.c ft_memcmp.c ft_memset.c \
@@ -42,34 +45,34 @@ SRC =	$(addprefix ft_mem/, \
 		$(addprefix ft_tab/, \
 		ft_free_tab.c)
 
-OBJ = $(notdir $(SRC:.c=.o))
-POBJ = $(addprefix $(OBJ_DIR)/, $(OBJ))
+OBJ = $(SRC:.c=.o)
 
-SRC_DIR = srcs
-OBJ_DIR = obj
+POBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(OBJ)))
 
 CFLAGS = -Wall -Werror -Wextra
 OFLAGS = -O3
 
+COMPILE = $(addprefix $(OBJ_DIR)/, $(OBJ))
 
 all: $(OBJ_DIR) $(NAME)
 
-$(NAME): $(POBJ) $(INCLUDES_DIR) libft.h
+
+$(NAME): $(COMPILE) $(INCLUDES_DIR)/libft.h
 	@echo "\nCreating archive "$(NAME)
-	@$(AR) $(NAME) $(OBJ)
+	@$(AR) $(NAME) $(POBJ)
 
 clean:
 	@echo "\nCleaning Object Files in libft"
 	@$(RM) $(POBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@echo "\nCleaning $(NAME)\n"
 
 re: fclean all
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES_DIR)
-	@$(CC) $(CFLAGS) $(OFLAGS) -I $(INCLUDES_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) $(OFLAGS) -I $(INCLUDES_DIR) -c $< -o $(OBJ_DIR)/$(notdir $@)
 	@echo "\x1b[32;01m.\x1b[0m\c"
 
 $(OBJ_DIR):
