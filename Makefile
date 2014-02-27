@@ -33,7 +33,7 @@ SRC = 	$(addprefix squel/, \
 				ft_print_error.c \
 				ft_prompt.c) \
 		$(addprefix builtins/, \
-				ft_builtins.c \
+				ft_env.c \
 				ft_cd.c \
 				ft_cd2.c \
 				ft_setenv.c \
