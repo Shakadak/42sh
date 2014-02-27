@@ -73,7 +73,7 @@ re: fclean all
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES_DIR)
 	@$(CC) $(CFLAGS) $(OFLAGS) -I $(INCLUDES_DIR) -c $< -o $(OBJ_DIR)/$(notdir $@)
-	@echo "\x1b[32;01m.\x1b[0m\c"
+	@echo "\033[32;01m.\033[0m\c"
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
