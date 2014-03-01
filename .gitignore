@@ -17,3 +17,6 @@
 *.out
 *.app
 42sh
+
+#Random shit from emacs
+*~
