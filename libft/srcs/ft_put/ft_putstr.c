@@ -9,6 +9,7 @@
 /*   Updated: 2013/12/15 12:12:18 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
 
 void	ft_putstr(char const *s)
@@ -18,6 +19,7 @@ void	ft_putstr(char const *s)
 	i = 0;
 	while (s[i] != '\0')
 		i++;
-	write(1, s, i);
+	if (write(1, s, i) != i)
+		return ;
 }
 

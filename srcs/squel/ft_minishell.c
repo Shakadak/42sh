@@ -12,6 +12,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 #include <libft.h>
 #include "../ft_minishell.h"
 

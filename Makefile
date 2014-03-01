@@ -55,7 +55,7 @@ $(NAME): $(COMPILE) $(LIBFT)
 	@echo "\nLinking "$(NAME)""
 	@$(CC) $(CFLAGS) $(OFLAGS) -o $(NAME) $(POBJ) \
 	-L$(LIBFT_DIR) -lft -I$(INCLUDES_DIR)
-	@echo "\n\x1b[32;01mdone!\x1b[0m"
+	@echo "\n\033[1;36mdone\033[0m"
 
 clean:
 	@echo "\nCleaning OBJ"
