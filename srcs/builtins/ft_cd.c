@@ -16,12 +16,12 @@
 #include <libft.h>
 #include "../ft_minishell.h"
 
+static void	ft_change_env2(t_dat *dat, int i, int j);
+
 static void	ft_change_env(t_dat *dat)
 {
 	int		i;
 	int		j;
-	char	**cmd_split;
-	char	*cut;
 
 	i = 0;
 	while (ft_strncmp(dat->env[i], "PWD=", 4) != 0)
@@ -29,18 +29,33 @@ static void	ft_change_env(t_dat *dat)
 	j = 0;
 	while (ft_strncmp(dat->env[j], "HOME=", 5) != 0)
 		j++;
-	cmd_split = (char **) malloc(sizeof(char *) * 3);
+	ft_change_env2(dat, i, j);
+}
+
+static void	ft_change_env2(t_dat *dat, int i, int j)
+{
+	char	**cmd_split;
+	char	*cut;
+	char	*tmp;
+
+	cmd_split = (char **) malloc(sizeof(char *) * 4);
 	cmd_split[0] = ft_strdup("setenv");
 	cmd_split[1] = ft_strdup("OLDPWD");
 	cmd_split[2] = ft_strdup(&(dat->env[i][4]));
+	cmd_split[3] = 0;
 	ft_setenv(dat, cmd_split);
-	free(cmd_split[2]);
-	cmd_split[1] = "PWD\0";
-	cmd_split[2] = NULL;
+	ft_strdel(&cmd_split[1]);
+	ft_strdel(&cmd_split[2]);
+	cmd_split[1] = ft_strdup("PWD");
 	cmd_split[2] = getcwd(cmd_split[2], 0);
 	if ((cut = strstr(cmd_split[2], &(dat->env[j][5]))))
-		cmd_split[2] = cut;
+	{
+		tmp = cmd_split[2];
+		cmd_split[2] = strdup(cut);
+		free(tmp);
+	}
 	ft_setenv(dat, cmd_split);
+	ft_free_tab(cmd_split);
 }
 
 static void	ft_change_dir(t_dat *dat, char **cmd_split)

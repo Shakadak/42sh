@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <libft.h>
 
 void	ft_free_tab(char **tab)
 {
@@ -18,7 +19,7 @@ void	ft_free_tab(char **tab)
 		return ;
 	while (*tab)
 	{
-		free((void **)tab);
+		ft_strdel(tab);
 		tab++;
 	}
 }

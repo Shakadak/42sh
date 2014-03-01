@@ -12,7 +12,7 @@
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-OFLAGS = -03
+OFLAGS = 
 RM = @rm -rf
 
 LIBFT_DIR = ./libft

@@ -37,6 +37,7 @@ static void		ft_put_pwd(char **environ)
 		i++;
 	}
 	i = ft_strlen(home);
+	ft_putstr("[42sh]");
 	if (ft_strnstr(pwd, home, i))
 	{
 		ft_putstr("[");

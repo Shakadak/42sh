@@ -39,6 +39,7 @@ int		check_error(char **cmd_split, int check)
 	if ((cmd_split[3] != NULL) && (cmd_split[2] != NULL))
 	{
 		ft_putstr_fd("cd: too many arguments: ", 2);
+		ft_putendl_fd(cmd_split[1], 2);
 		return (-1);
 	}
 	else if (cmd_split[2] != NULL)

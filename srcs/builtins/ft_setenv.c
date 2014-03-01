@@ -40,6 +40,7 @@ static void		ft_replace(char *rep, t_dat *dat, char **cmd_split)
 	new = malloc(sizeof(char **) * size + 1);
 	while (dat->env[i])
 	{
+
 		if ((rep == dat->env[i]))
 		{
 			if (cmd_split[1])
