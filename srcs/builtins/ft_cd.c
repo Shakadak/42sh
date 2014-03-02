@@ -16,108 +16,69 @@
 #include <libft.h>
 #include "../ft_minishell.h"
 
-static void	ft_change_env2(t_dat *dat, int i, int j);
-
-static void	ft_change_env(t_dat *dat)
+static void		ft_set_env_cd(t_dat *dat, char *cmd, char *arg1, char *arg2)
 {
-	int		i;
-	int		j;
-
-	i = 0;
-	while (ft_strncmp(dat->env[i], "PWD=", 4) != 0)
-		i++;
-	j = 0;
-	while (ft_strncmp(dat->env[j], "HOME=", 5) != 0)
-		j++;
-	ft_change_env2(dat, i, j);
-}
-
-static void	ft_change_env2(t_dat *dat, int i, int j)
-{
-	char	**cmd_split;
-	char	*cut;
-	char	*tmp;
+	char		**cmd_split;
 
 	cmd_split = (char **) malloc(sizeof(char *) * 4);
-	cmd_split[0] = ft_strdup("setenv");
-	cmd_split[1] = ft_strdup("OLDPWD");
-	cmd_split[2] = ft_strdup(&(dat->env[i][4]));
+	cmd_split[0] = ft_strdup(cmd);
+	cmd_split[1] = ft_strdup(arg1);
+	if (arg2)
+		cmd_split[2] = ft_strdup(arg2);
+	else
+		cmd_split[2] = 0;
 	cmd_split[3] = 0;
 	ft_setenv(dat, cmd_split);
-	ft_strdel(&cmd_split[1]);
-	ft_strdel(&cmd_split[2]);
-	cmd_split[1] = ft_strdup("PWD");
-	cmd_split[2] = getcwd(cmd_split[2], 0);
-	if ((cut = strstr(cmd_split[2], &(dat->env[j][5]))))
-	{
-		tmp = cmd_split[2];
-		cmd_split[2] = strdup(cut);
-		free(tmp);
-	}
-	ft_setenv(dat, cmd_split);
 	ft_free_tab(cmd_split);
+	free(cmd_split);
+	cmd_split = NULL;
 }
 
-static void	ft_change_dir(t_dat *dat, char **cmd_split)
+static void	ft_change_env_dir(t_dat * dat, char *str)
 {
 	DIR		*dir;
-
-	dir = opendir(cmd_split[1]);
-	if (dir == NULL)
-		ft_check_cd(cmd_split[1]);
-	else
-	{
-		chdir(cmd_split[1]);
-		closedir(dir);
-		ft_change_env(dat);
-	}
-}
-
-static void	ft_check_cmd_split(t_dat *dat, char **cmd_split)
-{
 	char	*tmp;
-	int		i;
 
-	i = 0;
-	if (!check_error(cmd_split, 2))
-	{
-		if ((ft_strcmp(cmd_split[1], "-") != 0))
-			ft_change_dir(dat, cmd_split);
-		else
-		{
-			while (ft_strncmp(dat->env[i], "OLDPWD=", 7))
-				i++;
-			tmp = ft_strdup(&(dat->env[i][7]));
-			chdir(tmp);
-			ft_change_env(dat);
-		}
-	}
-}
-
-
-void		ft_cd(t_dat *dat, char **cmd_split)
-{
-	int		i;
-	int		bol;
-
-	bol = 0;
-	i = 0;
-	if (check_error(cmd_split, 1))
-		return ;
-	if ((cmd_split[1] == NULL) || (ft_strcmp(cmd_split[1], "~") == 0))
-	{
-		while ((dat->env[i]) && (bol == 0))
-		{
-			if (ft_strncmp(dat->env[i], "HOME=", 5) != 0)
-				i++;
-			else
-			{
-				chdir(&(dat->env[i][5]));
-				ft_change_env(dat);
-				bol = 1;
-			}
-		}
-	}
+	tmp = NULL;
+	dir = opendir(str);
+	if (dir == NULL)
+		ft_check_cd(str);
 	else
-		ft_check_cmd_split(dat, cmd_split);
+	{
+		tmp = getcwd(tmp, 0);
+		chdir(str);
+		ft_set_env_cd(dat, "setenv", "OLDPWD", tmp);
+		ft_strdel(&tmp);
+		tmp = getcwd(tmp, 0);
+		ft_set_env_cd(dat, "setenv", "PWD", tmp);
+		ft_strdel(&tmp);
+		closedir(dir);
+	}
 }
+
+void	ft_cd(t_dat *dat, char **cmd_split)
+{
+	char		*tmp;
+
+	if (check_error(cmd_split))
+		return ;
+	if (cmd_split[1] == NULL || (ft_strcmp(cmd_split[1], "~") == 0))
+		{
+			if ((tmp = ft_get_env(dat, "HOME=")))
+				ft_change_env_dir(dat, &tmp[5]);
+			return ;
+		}
+	else if ((ft_strcmp(cmd_split[1], "-") == 0))
+		{
+			if ((tmp = ft_get_env(dat, "OLDPWD=")))
+				{
+					ft_change_env_dir(dat, &tmp[7]);
+					ft_putendl(ft_get_env(dat, "PWD=") + 4);
+				}
+			else
+				ft_putendl_fd("cd: can't find OLDPWD", 2);
+			return ;
+		}
+	ft_change_env_dir(dat, cmd_split[1]);
+}
+

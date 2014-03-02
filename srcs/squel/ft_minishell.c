@@ -80,6 +80,8 @@ static int		ft_proceed_sys(char *cmd, t_dat *dat)
 	ret = ft_check_access(path, cmd_split, dat);
 	free(path);
 	ft_free_tab(cmd_split);
+	free(cmd_split);
+	cmd_split = NULL;
 	if (ret == -1)
 		return (-1);
 	return (1);

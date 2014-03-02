@@ -42,6 +42,7 @@ static t_dat	ft_run_commands(t_dat dat, char *buf)
 {
 	char	**cmd;
 
+	cmd = NULL;
 	cmd = ft_strsplit(buf, ';');
 	while (*cmd)
 	{
@@ -53,8 +54,8 @@ static t_dat	ft_run_commands(t_dat dat, char *buf)
 		}
 		else
 			exit(0);
-		ft_put_prompt(dat.env);
 	}
+	ft_put_prompt(dat.env);
 	return (dat);
 }
 

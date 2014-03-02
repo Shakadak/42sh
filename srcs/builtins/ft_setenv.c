@@ -36,11 +36,10 @@ static void		ft_replace(char *rep, t_dat *dat, char **cmd_split)
 	int		i;
 
 	i = 0;
-	size = ft_getnewsize(dat, cmd_split) - ft_strlen(rep);
+	size = ft_getnewsize(dat, cmd_split) - ft_strlen(ft_strchr(rep, '=') + 1);
 	new = malloc(sizeof(char **) * size + 1);
 	while (dat->env[i])
 	{
-
 		if ((rep == dat->env[i]))
 		{
 			if (cmd_split[1])
@@ -55,6 +54,8 @@ static void		ft_replace(char *rep, t_dat *dat, char **cmd_split)
 			new[i] = ft_strdup(dat->env[i]);
 		i++;
 	}
+	ft_free_tab(dat->env);
+	free(dat->env);
 	dat->env = new;
 }
 
@@ -76,7 +77,7 @@ static int		ft_getnewsize(t_dat *dat, char **cmd_split)
 		size += ft_strlen(cmd_split[i]);
 		i++;
 	}
-	return (size);
+	return (size + 1);
 }
 
 static char		*envexist(t_dat *dat, char **cmd_split)

@@ -34,45 +34,36 @@ void	ft_check_cd(char *dir)
 	}
 }
 
-int		check_error(char **cmd_split, int check)
+int		check_error(char **cmd_split)
 {
-	if ((cmd_split[3] != NULL) && (cmd_split[2] != NULL))
+	if (cmd_split[1] != NULL && cmd_split[2] != NULL)
 	{
-		ft_putstr_fd("cd: too many arguments: ", 2);
-		ft_putendl_fd(cmd_split[1], 2);
+		ft_putendl_fd("cd: too many arguments", 2);
 		return (-1);
-	}
-	else if (cmd_split[2] != NULL)
-	{
-		if (check == 1)
-			return (0);
-		ft_putstr_fd("cd: string not in pwd: ", 2);
-		ft_putendl_fd(cmd_split[1], 2);
-		return (1);
 	}
 	return (0);
 }
 
 int		ft_builtin_cd(t_dat *dat, char **cmd_split)
 {
-	int		i;
-
-	i = 0;
-	while ((dat->env[i] != NULL) && (ft_strncmp(dat->env[i], "PWD=", 3) != 0))
-		i++;
-	if (dat->env[i] == NULL)
-	{
-		ft_putendl_fd("Error PWD not found", 2);
-		return (1);
-	}
-	i = 0;
-	while ((dat->env[i] != NULL) && (ft_strncmp(dat->env[i], "OLDPWD=", 6) != 0))
-		i++;
-	if (dat->env[i] == NULL)
-	{
-		ft_putendl_fd("Error OLDPWD not found", 2);
-		return (1);
-	}
 	ft_cd(dat, cmd_split);
 	return (1);
 }
+
+char	*ft_get_env(t_dat *dat, char *search)
+{
+	int			i;
+	size_t		len;
+
+
+	i = 0;
+	len = ft_strlen(search);
+	while (dat->env[i])
+		{
+			if (ft_strncmp(dat->env[i], search, len) == 0)
+				return (dat->env[i]);
+			i++;
+		}
+	return (NULL);
+}
+
