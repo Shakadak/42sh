@@ -76,12 +76,10 @@ static int		ft_proceed_sys(char *cmd, t_dat *dat)
 	cmd_split = ft_strsplit(cmd, ' ');
 	if (ft_strchr(cmd, '/'))
 		ret = execve(cmd_split[0], cmd_split, dat->env);
-	path = ft_strsplit(ft_strchr(dat->env[0], '=') + 1, ':');
+	path = ft_strsplit(ft_get_env(dat, "PATH=") + 5, ':');
 	ret = ft_check_access(path, cmd_split, dat);
 	free(path);
 	ft_free_tab(cmd_split);
-	free(cmd_split);
-	cmd_split = NULL;
 	if (ret == -1)
 		return (-1);
 	return (1);

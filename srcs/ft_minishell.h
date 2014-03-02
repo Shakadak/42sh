@@ -34,5 +34,7 @@ int				ft_builtin_cd(t_dat *dat, char **cmd_split);
 int				check_error(char **cmd_split);
 void			ft_check_cd(char *dir);
 char			*ft_get_env(t_dat *dat, char *search);
+int				ft_exit(char *cmd);
+int				ft_isexit_cmd(char *cmd);
 
 #endif

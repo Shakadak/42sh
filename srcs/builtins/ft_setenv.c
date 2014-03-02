@@ -55,7 +55,6 @@ static void		ft_replace(char *rep, t_dat *dat, char **cmd_split)
 		i++;
 	}
 	ft_free_tab(dat->env);
-	free(dat->env);
 	dat->env = new;
 }
 

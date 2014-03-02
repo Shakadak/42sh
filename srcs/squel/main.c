@@ -31,6 +31,8 @@ int				main(void)
 		dat = ft_run_commands(dat, buf);
 		free(buf);
 	}
+	ft_free_tab(dat.env);
+	ft_putendl("\n42sh: exit");
 	if (ret == 0)
 		free(buf);
 	else if (ret == -1)
@@ -41,20 +43,24 @@ int				main(void)
 static t_dat	ft_run_commands(t_dat dat, char *buf)
 {
 	char	**cmd;
+	char	**run;
+	char	*exit;
 
 	cmd = NULL;
 	cmd = ft_strsplit(buf, ';');
-	while (*cmd)
+	run = cmd;
+	while (*run)
 	{
-		if (ft_strcmp(ft_strtrim(*cmd), "exit") != 0)
-		{
-			ft_minishell(*cmd, &dat);
-			free(*cmd);
-			cmd++;
-		}
-		else
-			exit(0);
+		if (ft_isexit_cmd(*run))
+			{
+				exit = ft_strdup(*run);
+				ft_free_tab(cmd);
+				ft_exit(exit);
+			}
+		ft_minishell(*run, &dat);
+		run++;
 	}
+	ft_free_tab(cmd);
 	ft_put_prompt(dat.env);
 	return (dat);
 }

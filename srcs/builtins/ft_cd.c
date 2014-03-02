@@ -30,7 +30,6 @@ static void		ft_set_env_cd(t_dat *dat, char *cmd, char *arg1, char *arg2)
 	cmd_split[3] = 0;
 	ft_setenv(dat, cmd_split);
 	ft_free_tab(cmd_split);
-	free(cmd_split);
 	cmd_split = NULL;
 }
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <libft.h>
+#include <stdlib.h>
 
-void	ft_free_tab(char **tab)
+int		ft_exit(char *cmd)
 {
-	char **tmp;
+	while (ft_isspace(*cmd))
+		cmd++;
+	ft_putstr("42sh: exit (");
+	if (cmd)
+		ft_putnbr(ft_atoi(&cmd[4]));
+	ft_putendl(")");
+	if (cmd[4])
+		exit(ft_atoi(&cmd[4]));
+	else
+		exit(0);
+}
 
-	tmp = tab;
-	if (!tab)
-		return ;
-	while (*tab)
-	{
-		ft_strdel(tab);
-		tab++;
-	}
-	free(tmp);
+int		ft_isexit_cmd(char *cmd)
+{
+	while (ft_isspace(*cmd))
+		cmd++;
+	if (strncmp(cmd, "exit", 4) != 0)
+		return (0);
+	else if (cmd[4] == 0 || cmd[4] == ' ')
+		return (1);
+	return (0);
 }
