@@ -28,21 +28,23 @@ static void		ft_put_pwd(t_env *env)
 	char			*pwd;
 	char			*home;
 
+	i = 0;
 	pwd = ft_get_env(env, "PWD");
 	home = ft_get_env(env, "HOME");
-	i = ft_strlen(home);
+	if (home)
+		i = ft_strlen(home);
 	ft_putstr("[42sh]");
 	if (pwd)
 		{
-			if (ft_strnstr(pwd, home, i))
+			ft_putstr("[");
+			if (home && ft_strnstr(pwd, home, i))
 				{
-					ft_putstr("[");
 					ft_putstr("~");
 					ft_putstr(&pwd[i]);
-					ft_putstr("]");
 				}
 			else
 				ft_putstr(pwd);
+			ft_putstr("]");
 		}
 	ft_putstr("~>\033[0m");
 }
