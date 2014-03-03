@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 14:00:21 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/26 15:59:23 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/03 15:52:03 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		ft_set_env_cd(t_dat *dat, char *cmd, char *arg1, char *arg2)
 	else
 		cmd_split[2] = 0;
 	cmd_split[3] = 0;
-	ft_setenv(dat, cmd_split);
+	ft_setenv(dat->env, cmd_split);
 	ft_free_tab(cmd_split);
 	cmd_split = NULL;
 }
