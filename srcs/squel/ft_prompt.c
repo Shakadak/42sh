@@ -14,6 +14,7 @@
 
 static void		ft_put_uname(char **environ);
 static void		ft_put_pwd(char **environ);
+static void		ft_put_pwd2(char *pwd, char *home, int i);
 
 void			ft_put_prompt(char **environ)
 {
@@ -28,6 +29,8 @@ static void		ft_put_pwd(char **environ)
 	char			*home;
 
 	i = 0;
+	pwd = NULL;
+	home = NULL;
 	while (environ[i])
 	{
 		if (ft_strnstr(environ[i], "PWD", 3))
@@ -37,16 +40,24 @@ static void		ft_put_pwd(char **environ)
 		i++;
 	}
 	i = ft_strlen(home);
+	ft_put_pwd2(pwd, home, i);
+}
+
+static void		ft_put_pwd2(char *pwd, char *home, int i)
+{
 	ft_putstr("[42sh]");
-	if (ft_strnstr(pwd, home, i))
-	{
-		ft_putstr("[");
-		ft_putstr("~");
-		ft_putstr(&pwd[i]);
-		ft_putstr("]");
-	}
-	else
-		ft_putstr(pwd);
+	if (pwd)
+		{
+			ft_putstr("[");
+			if (pwd && ft_strnstr(pwd, home, i))
+				{
+					ft_putstr("~");
+					ft_putstr(&pwd[i]);
+				}
+			else
+				ft_putstr(pwd);
+			ft_putstr("]");
+		}
 	ft_putstr("~>\033[0m");
 }
 
@@ -62,7 +73,11 @@ static void		ft_put_uname(char **environ)
 			uname = ft_strchr(environ[i], '=') + 1;
 		i++;
 	}
-	ft_putstr("\033[1;1m[");
-	ft_putstr(uname);
-	ft_putstr("]");
+	ft_putstr("\033[1;1m");
+	if (uname)
+		{
+			ft_putstr("{");
+			ft_putstr(uname);
+			ft_putstr("]");
+		}
 }
