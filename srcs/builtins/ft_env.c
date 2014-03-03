@@ -6,21 +6,19 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 15:27:37 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/26 15:59:22 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/03 13:11:08 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include "../ft_minishell.h"
 
-void		ft_env(t_dat *dat)
+void		ft_env(t_env *env)
 {
-	int			i;
-
-	i = 0;
-	while (dat->env[i])
-	{
-		ft_putendl(dat->env[i]);
-		i++;
-	}
+	if (!env)
+		return ;
+	ft_putstr(env->var);
+	ft_putchar('=');
+	ft_putendl(env->value);
+	msh_env(env->next);
 }

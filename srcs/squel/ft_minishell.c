@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:59:33 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/26 16:25:40 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/03 13:17:20 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int		ft_check_builtin(char *cmd, t_dat *dat)
 
 	cmd_split = ft_strsplit(cmd, ' ');
 	if (ft_strcmp("env", cmd_split[0]) == 0)
-		ft_env(dat);
+		ft_env(dat->env);
 	else if (ft_strcmp("cd", cmd_split[0]) == 0)
 		ft_builtin_cd(dat, cmd_split);
 	else if (ft_strcmp("setenv", cmd_split[0]) == 0)
@@ -63,7 +63,11 @@ static int		ft_check_builtin(char *cmd, t_dat *dat)
 	else if (ft_strcmp("unsetenv", cmd_split[0]) == 0)
 		ft_unsetenv(dat, cmd_split);
 	else
+	{
+		ft_free_tab(cmd_split);
 		return (0);
+	}
+	ft_free_tab(cmd_split);
 	return (1);
 }
 
