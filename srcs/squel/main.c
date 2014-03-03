@@ -25,6 +25,8 @@ int				main(void)
 	t_dat			dat;
 
 	dat.env = clone_env();
+	if (!dat.env)
+		exit(0);
 	ft_put_prompt(dat.env);
 	while ((ret = get_next_line(0, &buf)) == 1)
 	{
