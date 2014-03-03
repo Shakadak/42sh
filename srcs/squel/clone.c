@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/05 11:37:07 by npineau           #+#    #+#             */
-/*   Updated: 2014/03/03 18:12:47 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/03 18:54:13 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_env				*clone_env(void)
 	t_env		*tmp;
 
 	new = NULL;
+	if (!environ)
+		return (NULL);
 	while (*environ)
 	{
 		if (new == NULL)
