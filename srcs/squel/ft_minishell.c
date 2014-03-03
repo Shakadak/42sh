@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:59:33 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/03 13:39:17 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/03 16:54:57 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ static int		ft_proceed_sys(char *cmd, t_dat *dat)
 
 	cmd_split = ft_strsplit(cmd, ' ');
 	if (ft_strchr(cmd, '/'))
-		ret = execve(cmd_split[0], cmd_split, dat->env);
-	path = ft_strsplit(ft_get_env(dat, "PATH=") + 5, ':');
+		ret = execve(cmd_split[0], cmd_split, NULL);////////////////////
+	path = ft_strsplit(ft_get_env(dat->env, "PATH"), ':');
 	ret = ft_check_access(path, cmd_split, dat);
 	free(path);
 	ft_free_tab(cmd_split);
@@ -94,11 +94,12 @@ static int		ft_check_access(char **path, char **cmd_split, t_dat *dat)
 	char		*try;
 	int			ret;
 
+	(void)dat;
 	ret = -1;
 	if (access(cmd_split[0], X_OK) == 0)
 	{
 		if (cmd_split[0][0] == '.' && cmd_split[0][1] == '/')
-			ret = execve(cmd_split[0], cmd_split, dat->env);
+			ret = execve(cmd_split[0], cmd_split, NULL);/////////////////
 		return (ret);
 	}
 	while (*path)
@@ -107,7 +108,7 @@ static int		ft_check_access(char **path, char **cmd_split, t_dat *dat)
 		try = ft_strfjoin(try, cmd_split[0]);
 		if (access(try, X_OK) == 0)
 		{
-			ret = execve(try, cmd_split, dat->env);
+			ret = execve(try, cmd_split, NULL);///////////////////////////
 			free(try);
 			return (ret);
 		}

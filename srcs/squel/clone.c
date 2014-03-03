@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/05 11:37:07 by npineau           #+#    #+#             */
-/*   Updated: 2014/03/03 16:44:24 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/03 18:12:47 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@ static t_env		*new_elem(char *src);
 
 t_env				*clone_env(void)
 {
-	extern char	**src;
+	extern char	**environ;
 	t_env		*new;
 	t_env		*tmp;
 
 	new = NULL;
-	while (*src)
+	while (*environ)
 	{
 		if (new == NULL)
 		{
-			tmp = new_elem(*src);
+			tmp = new_elem(*environ);
 			new = tmp;
 		}
 		else
 		{
-			tmp->next = new_elem(*src);
+			tmp->next = new_elem(*environ);
 			tmp = tmp->next;
 		}
-		src++;
+		environ++;
 	}
 	return (new);
 }
@@ -45,7 +45,7 @@ static t_env		*new_elem(char *src)
 	t_env	*new;
 
 	new = (t_env *)malloc(sizeof(t_env));
-	new->var = ft_strsub(src, 0, (ft_strchr(src, '=') - 1) - src);
+	new->var = ft_strsub(src, 0, ft_strchr(src, '=') - src);
 	new->value = ft_strdup(ft_strchr(src, '=') + 1);
 	new->next = NULL;
 	return (new);

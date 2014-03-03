@@ -6,36 +6,30 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:51:06 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/01 14:44:39 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/03 18:24:30 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
+#include "../ft_minishell.h"
 
-static void		ft_put_uname(char **environ);
-static void		ft_put_pwd(char **environ);
+static void		ft_put_uname(t_env *env);
+static void		ft_put_pwd(t_env *env);
 
-void			ft_put_prompt(char **environ)
+void			ft_put_prompt(t_env *env)
 {
-	ft_put_uname(environ);
-	ft_put_pwd(environ);
+	ft_put_uname(env);
+	ft_put_pwd(env);
 }
 
-static void		ft_put_pwd(char **environ)
+static void		ft_put_pwd(t_env *env)
 {
 	int				i;
 	char			*pwd;
 	char			*home;
 
-	i = 0;
-	while (environ[i])
-	{
-		if (ft_strnstr(environ[i], "PWD", 3))
-			pwd = ft_strchr(environ[i], '=') + 1;
-		if (ft_strnstr(environ[i], "HOME", 4))
-			home = ft_strchr(environ[i], '=') + 1;
-		i++;
-	}
+	pwd = ft_get_env(env, "PWD");
+	home = ft_get_env(env, "HOME");
 	i = ft_strlen(home);
 	ft_putstr("[42sh]");
 	if (ft_strnstr(pwd, home, i))
@@ -50,18 +44,15 @@ static void		ft_put_pwd(char **environ)
 	ft_putstr("~>\033[0m");
 }
 
-static void		ft_put_uname(char **environ)
+static void		ft_put_uname(t_env *env)
 {
 	int				i;
 	char			*uname;
 
 	i = 0;
-	while (environ[i])
-	{
-		if (ft_strnstr(environ[i], "USER", 4))
-			uname = ft_strchr(environ[i], '=') + 1;
-		i++;
-	}
+	uname = ft_get_env(env, "USER");
+	if (!uname)
+		return ;
 	ft_putstr("\033[1;1m[");
 	ft_putstr(uname);
 	ft_putstr("]");

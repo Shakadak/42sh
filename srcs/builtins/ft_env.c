@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 15:27:37 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/03 13:11:08 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/03 16:57:33 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void		ft_env(t_env *env)
 	ft_putstr(env->var);
 	ft_putchar('=');
 	ft_putendl(env->value);
-	msh_env(env->next);
+	ft_env(env->next);
 }

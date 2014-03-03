@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 16:41:56 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/03 15:36:00 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/03 17:31:40 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_env	*get_pre(t_env *env, char *src)
 		if (ft_strequ(env->next->var, src))
 			return (env);
 		else
-			return (get_prev(env->next, src));
+			return (get_pre(env->next, src));
 	}
 	return (NULL);
 }
