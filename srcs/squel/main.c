@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:13:34 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/03 13:12:13 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/03 16:41:46 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				main(void)
 		dat = ft_run_commands(dat, buf);
 		free(buf);
 	}
-	ft_free_tab(dat.env);
+	/////////////////////////////////free dis shiet
 	ft_putendl("\n42sh: exit");
 	if (ret == 0)
 		free(buf);
