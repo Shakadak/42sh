@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:51:06 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/03 18:24:30 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/03 19:32:36 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,18 @@ static void		ft_put_pwd(t_env *env)
 		i = ft_strlen(home);
 	ft_putstr("[42sh]");
 	if (pwd)
+	{
+		ft_putstr("[");
+		if (home && ft_strstr(pwd, home))
 		{
-			ft_putstr("[");
-			if (home && ft_strnstr(pwd, home, i))
-				{
-					ft_putstr("~");
-					ft_putstr(&pwd[i]);
-				}
-			else
-				ft_putstr(pwd);
-			ft_putstr("]");
+			i+= ft_strstr(pwd, home) - pwd;
+			ft_putstr("~");
+			ft_putstr(&pwd[i]);
 		}
+		else
+			ft_putstr(pwd);
+		ft_putstr("]");
+	}
 	ft_putstr("~>\033[0m");
 }
 
