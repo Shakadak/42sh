@@ -32,28 +32,30 @@ static void		ft_put_pwd(t_env *env)
 	home = ft_get_env(env, "HOME");
 	i = ft_strlen(home);
 	ft_putstr("[42sh]");
-	if (ft_strnstr(pwd, home, i))
-	{
-		ft_putstr("[");
-		ft_putstr("~");
-		ft_putstr(&pwd[i]);
-		ft_putstr("]");
-	}
-	else
-		ft_putstr(pwd);
+	if (pwd)
+		{
+			if (ft_strnstr(pwd, home, i))
+				{
+					ft_putstr("[");
+					ft_putstr("~");
+					ft_putstr(&pwd[i]);
+					ft_putstr("]");
+				}
+			else
+				ft_putstr(pwd);
+		}
 	ft_putstr("~>\033[0m");
 }
 
 static void		ft_put_uname(t_env *env)
 {
-	int				i;
 	char			*uname;
 
-	i = 0;
 	uname = ft_get_env(env, "USER");
+	ft_putstr("\033[1;1m");
 	if (!uname)
 		return ;
-	ft_putstr("\033[1;1m[");
+	ft_putstr("[");
 	ft_putstr(uname);
 	ft_putstr("]");
 }
