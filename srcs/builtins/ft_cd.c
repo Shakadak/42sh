@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 14:00:21 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/03 15:52:03 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/03 16:34:09 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,16 @@ void	ft_cd(t_dat *dat, char **cmd_split)
 		return ;
 	if (cmd_split[1] == NULL || (ft_strcmp(cmd_split[1], "~") == 0))
 		{
-			if ((tmp = ft_get_env(dat, "HOME=")))
-				ft_change_env_dir(dat, &tmp[5]);
+			if ((tmp = ft_get_env(dat->env, "HOME")))
+				ft_change_env_dir(dat, tmp);
 			return ;
 		}
 	else if ((ft_strcmp(cmd_split[1], "-") == 0))
 		{
-			if ((tmp = ft_get_env(dat, "OLDPWD=")))
+			if ((tmp = ft_get_env(dat->env, "OLDPWD")))
 				{
-					ft_change_env_dir(dat, &tmp[7]);
-					ft_putendl(ft_get_env(dat, "PWD=") + 4);
+					ft_change_env_dir(dat, tmp);
+					ft_putendl(ft_get_env(dat->env, "PWD"));
 				}
 			else
 				ft_putendl_fd("cd: can't find OLDPWD", 2);

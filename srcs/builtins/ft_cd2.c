@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 14:14:33 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/26 15:59:23 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/03 16:34:10 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,11 @@ int		ft_builtin_cd(t_dat *dat, char **cmd_split)
 	return (1);
 }
 
-char	*ft_get_env(t_dat *dat, char *search)
+char	*ft_get_env(t_env *env, char *search)
 {
-	int			i;
-	size_t		len;
-
-
-	i = 0;
-	len = ft_strlen(search);
-	while (dat->env[i])
-		{
-			if (ft_strncmp(dat->env[i], search, len) == 0)
-				return (dat->env[i]);
-			i++;
-		}
-	return (NULL);
+	if (!env)
+		return (NULL);
+	if (ft_strequ(env->var, search))
+		return (env->value);
+	return (ft_get_env(env->next, search));
 }
-

@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 18:44:39 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/03 15:42:15 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/03 16:35:50 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			ft_check_cd(char *av);
 int				ft_builtin_cd(t_dat *dat, char **cmd_split);
 int				check_error(char **cmd_split);
 void			ft_check_cd(char *dir);
-char			*ft_get_env(t_dat *dat, char *search);
+char			*ft_get_env(t_env *env, char *search)
 int				ft_exit(char *cmd);
 int				ft_isexit_cmd(char *cmd);
 
