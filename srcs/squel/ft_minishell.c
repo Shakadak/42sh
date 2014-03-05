@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:59:33 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/05 16:10:29 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/05 18:20:19 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <libft.h>
 #include "../ft_minishell.h"
 
+#include <errno.h>
 static void		ft_proceed_cmd(char *cmd, t_dat *dat);
 static int		ft_check_builtin(char *cmd, t_dat *dat);
 static int		ft_proceed_sys(char *cmd, t_dat *dat);
@@ -44,7 +45,6 @@ void			ft_minishell(char *cmd, t_dat *dat)
 
 static void		ft_proceed_cmd(char *cmd, t_dat *dat)
 {
-	ft_putendl(cmd);
 	if (ft_proceed_sys(cmd, dat) == -1)
 		ft_print_error(cmd, 1);
 	exit(0);
@@ -63,6 +63,8 @@ static int		ft_check_builtin(char *cmd, t_dat *dat)
 		ft_setenv(dat->env, cmd_split);
 	else if (ft_strcmp("unsetenv", cmd_split[0]) == 0)
 		ft_unsetenv(dat, cmd_split);
+	else if (ft_strcmp("echo", cmd_split[0]) == 0)
+		ft_echo(cmd_split);
 	else
 	{
 		ft_free_tab(cmd_split);
@@ -77,27 +79,12 @@ static int		ft_proceed_sys(char *cmd, t_dat *dat)
 	char		**path;
 	int			ret;
 	char		**cmd_split;
-	char		**env;
 
-	env = tab_env(dat->env, 0);
 	cmd_split = ft_strsplit(cmd, ' ');
-	ft_putendl(cmd_split[0]);
-//	int i=0;////////////
-//	while (env[i])
-//	{
-//		ft_putendl(env[i]);
-//		i++;
-//	}/////////////////
 	if (ft_strchr(cmd, '/'))
-		ret = execve(cmd_split[0], cmd_split, env);
+		ret = execve(cmd_split[0], cmd_split, tab_env(dat->env, 0));
 	path = ft_strsplit(ft_get_env(dat->env, "PATH"), ':');
-	int i=0;////////////////////////////
-	while (path[i])
-	{
-		ft_putendl(path[i]);
-		i++;
-	}////////////////
-	ret = ft_check_access(path, cmd_split, env);
+	ret = ft_check_access(path, cmd_split, tab_env(dat->env, 0));
 	free(path);
 	ft_free_tab(cmd_split);
 	if (ret == -1)
@@ -111,7 +98,6 @@ static int		ft_check_access(char **path, char **cmd_split, char **env)
 	int			ret;
 
 	ret = -1;
-	ft_putendl("check acces");
 	if (access(cmd_split[0], X_OK) == 0)
 	{
 		if (cmd_split[0][0] == '.' && cmd_split[0][1] == '/')
@@ -122,16 +108,8 @@ static int		ft_check_access(char **path, char **cmd_split, char **env)
 	{
 		try = ft_strfjoin(*path, "/");
 		try = ft_strfjoin(try, cmd_split[0]);
-		ft_putendl(try);//////////////////////
 		if (access(try, X_OK) == 0)
 		{
-			ft_putendl("acces ok");
-			int i=0;////////////////////////////
-			while (env[i])
-			{
-				ft_putendl(env[i]);
-				i++;
-			}////////////////
 			ret = execve(try, cmd_split, env);
 			free(try);
 			return (ret);
@@ -139,6 +117,5 @@ static int		ft_check_access(char **path, char **cmd_split, char **env)
 		free(try);
 		path++;
 	}
-	ft_putendl("out of path");///////////////////////////
 	return (-1);
 }

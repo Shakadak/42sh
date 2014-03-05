@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:13:34 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/03 16:41:46 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/05 17:55:36 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int				main(void)
 
 	dat.env = clone_env();
 	if (!dat.env)
+	{
+		ft_putendl("no env");
 		exit(0);
+	}
 	ft_put_prompt(dat.env);
 	while ((ret = get_next_line(0, &buf)) == 1)
 	{
