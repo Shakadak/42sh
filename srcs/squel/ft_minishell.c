@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:59:33 by cheron            #+#    #+#             */
-/*   Updated: 2014/03/05 15:14:21 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/05 15:28:16 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int		ft_proceed_sys(char *cmd, t_dat *dat)
 	path = ft_strsplit(ft_get_env(dat->env, "PATH"), ':');
 	ret = ft_check_access(path, cmd_split, env);
 	free(path);
-	ft_free_tab(env);
+//	ft_free_tab(env);
 	ft_free_tab(cmd_split);
 	if (ret == -1)
 		return (-1);
