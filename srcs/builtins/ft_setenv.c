@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 13:03:28 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/26 15:59:21 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/03 13:37:06 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,107 +14,30 @@
 #include <stdlib.h>
 #include "../ft_minishell.h"
 
-static int		ft_getnewsize(t_dat *dat, char **cmd_split);
-static char		*envexist(t_dat *dat, char **cmd_split);
-static void		ft_newenv(t_dat *dat, char **cmd_split);
-static void		ft_replace(char *rep, t_dat *dat, char **cmd_split);
-
-void			ft_setenv(t_dat *dat, char **cmd_split)
+static t_env		*new_elem(char **src)
 {
-	char	*ret;
+	t_env	*new;
 
-	if ((ret = envexist(dat, cmd_split)))
-		ft_replace(ret, dat, cmd_split);
-	else
-		ft_newenv(dat, cmd_split);
+	new = (t_env *)malloc(sizeof(t_env));
+	new->var = ft_strdup(src[1]);
+	new->value = ft_strdup(src[2]);
+	new->next = NULL;
+	return (new);
 }
 
-static void		ft_replace(char *rep, t_dat *dat, char **cmd_split)
+void			ft_setenv(t_env *env, char **cmd)
 {
-	int		size;
-	char	**new;
-	int		i;
+	int		ret;
 
-	i = 0;
-	size = ft_getnewsize(dat, cmd_split) - ft_strlen(ft_strchr(rep, '=') + 1);
-	new = malloc(sizeof(char **) * size + 1);
-	while (dat->env[i])
+	if (env->next && !(ret = ft_strequ(env->var, cmd[1])))
+		ft_setenv(env->next, cmd);
+	else if (!ret)
 	{
-		if ((rep == dat->env[i]))
-		{
-			if (cmd_split[1])
-			{
-				new[i] = ft_strdup(cmd_split[1]);
-				new[i] = ft_strfjoin(new[i], "=");
-			}
-			if (cmd_split[2])
-				new[i] = ft_strfjoin(new[i], cmd_split[2]);
-		}
+		if (!cmd[1] && !cmd[2])
+			ft_putendl("Usage: setenv VAR value.");
 		else
-			new[i] = ft_strdup(dat->env[i]);
-		i++;
+			env->next = new_elem(cmd);
 	}
-	ft_free_tab(dat->env);
-	dat->env = new;
-}
-
-static int		ft_getnewsize(t_dat *dat, char **cmd_split)
-{
-	int		size;
-	int		i;
-
-	i = 0;
-	size = 0;
-	while (dat->env[i])
-	{
-		size += ft_strlen(dat->env[i]);
-		i++;
-	}
-	i = 1;
-	while (cmd_split[i])
-	{
-		size += ft_strlen(cmd_split[i]);
-		i++;
-	}
-	return (size + 1);
-}
-
-static char		*envexist(t_dat *dat, char **cmd_split)
-{
-	int		i;
-	size_t	len;
-	char	*ret;
-
-	i = 0;
-	if (!cmd_split[1])
-		return (NULL);
-	len = ft_strlen(cmd_split[1]);
-	while (dat->env[i]
-		   && (ret = ft_strnstr(dat->env[i], cmd_split[1], len)) == NULL)
-		i++;
-	return (ret);
-}
-
-static void		ft_newenv(t_dat *dat, char **cmd_split)
-{
-	int		size;
-	char	**new;
-	int		i;
-
-	i = 0;
-	size = ft_getnewsize(dat, cmd_split);
-	new = malloc(sizeof(char **) * size + 1);
-	while (dat->env[i])
-	{
-		new[i] = ft_strdup(dat->env[i]);
-		i++;
-	}
-	if (cmd_split[1])
-	{
-		new[i] = ft_strdup(cmd_split[1]);
-		new[i] = ft_strfjoin(new[i], "=");
-	}
-	if (cmd_split[2])
-		new[i] = ft_strfjoin(new[i], cmd_split[2]);
-	dat->env = new;
+	else if (ret)
+		env->value = ft_strdup(cmd[2]);
 }

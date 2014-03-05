@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:13:34 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/24 18:08:35 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/03 16:41:46 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ int				main(void)
 	int				ret;
 	t_dat			dat;
 
-	dat.env = ft_cpenv();
+	dat.env = clone_env();
+	if (!dat.env)
+		exit(0);
 	ft_put_prompt(dat.env);
 	while ((ret = get_next_line(0, &buf)) == 1)
 	{
 		dat = ft_run_commands(dat, buf);
 		free(buf);
 	}
-	ft_free_tab(dat.env);
+	/////////////////////////////////free dis shiet
 	ft_putendl("\n42sh: exit");
 	if (ret == 0)
 		free(buf);

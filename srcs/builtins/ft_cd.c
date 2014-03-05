@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 14:00:21 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/26 15:59:23 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/03 16:34:09 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		ft_set_env_cd(t_dat *dat, char *cmd, char *arg1, char *arg2)
 	else
 		cmd_split[2] = 0;
 	cmd_split[3] = 0;
-	ft_setenv(dat, cmd_split);
+	ft_setenv(dat->env, cmd_split);
 	ft_free_tab(cmd_split);
 	cmd_split = NULL;
 }
@@ -63,16 +63,16 @@ void	ft_cd(t_dat *dat, char **cmd_split)
 		return ;
 	if (cmd_split[1] == NULL || (ft_strcmp(cmd_split[1], "~") == 0))
 		{
-			if ((tmp = ft_get_env(dat, "HOME=")))
-				ft_change_env_dir(dat, &tmp[5]);
+			if ((tmp = ft_get_env(dat->env, "HOME")))
+				ft_change_env_dir(dat, tmp);
 			return ;
 		}
 	else if ((ft_strcmp(cmd_split[1], "-") == 0))
 		{
-			if ((tmp = ft_get_env(dat, "OLDPWD=")))
+			if ((tmp = ft_get_env(dat->env, "OLDPWD")))
 				{
-					ft_change_env_dir(dat, &tmp[7]);
-					ft_putendl(ft_get_env(dat, "PWD=") + 4);
+					ft_change_env_dir(dat, tmp);
+					ft_putendl(ft_get_env(dat->env, "PWD"));
 				}
 			else
 				ft_putendl_fd("cd: can't find OLDPWD", 2);

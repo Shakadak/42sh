@@ -6,13 +6,13 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/26 16:13:36 by cheron            #+#    #+#              #
-#    Updated: 2014/03/05 12:14:05 by cheron           ###   ########.fr        #
+#    Updated: 2014/03/05 15:10:37 by npineau          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-OFLAGS = 
+OFLAGS =
 RM = @rm -rf
 
 LIBFT_DIR = ./libft
@@ -26,9 +26,9 @@ NAME = 42sh
 OBJ_DIR = obj
 SRC_DIR = srcs
 
-SRC = 	$(addprefix squel/, \
+SRC =	$(addprefix squel/, \
 				main.c \
-				ft_cpenv.c \
+				clone.c \
 				ft_minishell.c \
 				ft_print_error.c \
 				ft_prompt.c) \
