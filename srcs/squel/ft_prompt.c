@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:51:06 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/01 14:44:39 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/05 12:26:23 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void		ft_put_uname(char **environ)
 	ft_putstr("\033[1;1m");
 	if (uname)
 		{
-			ft_putstr("{");
+			ft_putstr("[");
 			ft_putstr(uname);
 			ft_putstr("]");
 		}

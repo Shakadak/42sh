@@ -6,7 +6,7 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/26 16:13:36 by cheron            #+#    #+#              #
-#    Updated: 2014/02/26 20:42:09 by cheron           ###   ########.fr        #
+#    Updated: 2014/03/05 12:14:05 by cheron           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -33,6 +33,7 @@ SRC = 	$(addprefix squel/, \
 				ft_print_error.c \
 				ft_prompt.c) \
 		$(addprefix builtins/, \
+				ft_echo.c \
 				ft_exit.c \
 				ft_env.c \
 				ft_cd.c \

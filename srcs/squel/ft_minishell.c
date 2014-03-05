@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 17:59:33 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/26 16:25:40 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/05 12:13:09 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static int		ft_check_builtin(char *cmd, t_dat *dat)
 		ft_setenv(dat, cmd_split);
 	else if (ft_strcmp("unsetenv", cmd_split[0]) == 0)
 		ft_unsetenv(dat, cmd_split);
+	else if (ft_strcmp("echo", cmd_split[0]) == 0)
+		ft_echo(cmd_split);
 	else
 		return (0);
 	return (1);

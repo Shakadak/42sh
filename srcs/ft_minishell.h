@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 18:44:39 by cheron            #+#    #+#             */
-/*   Updated: 2014/02/21 15:25:05 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/05 12:15:01 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void			ft_check_cd(char *dir);
 char			*ft_get_env(t_dat *dat, char *search);
 int				ft_exit(char *cmd);
 int				ft_isexit_cmd(char *cmd);
+int				ft_echo(char **cmd_split);
 
 #endif
