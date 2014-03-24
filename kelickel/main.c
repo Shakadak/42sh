@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/12 17:15:16 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/23 18:10:03 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	sig_handler(int sig)
 {
-	write(1, "segfault", 8);
 	if (sig == 2)
 		write(1, "\n$>", 3);
 }
@@ -92,31 +91,30 @@ int	two(char *buff)
 	str[t] = 0;
 	three(str);
 	free(str);
+	return (1);
 }
 
-int	main()
+int	first(char *buff)
 {
-	char	buff[2042];
 	char	*str;
 	int		t;
 	int		i;
 
 	i = 0;
-	write(1, "$>", 2);
-	t = read(0, buff, 2041);
-	buff[t - 1] = 0;
-	str = (char *)malloc(sizeof(char) * (t + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(buff)));
 	t = 0;
-	while (buff[i] != 0)
+	while (buff[i] != '\0')
 	{
 		str[t++] = buff[i++];
 		if (buff[i] == '&' && buff[i + 1] == '&')
 		{
+			ft_putstr("1");
 			str[t++] = buff[i++];
 			str[t++] = buff[i++];
 		}
 		if (buff[i] == '&' || buff[i] == ';')
 		{
+			ft_putstr("2");
 			str[t] = 0;
 			two(str);
 			while (t >= 0)
@@ -127,5 +125,19 @@ int	main()
 	str[t] = 0;
 	two(str);
 	free(str);
-	main();
+	return (1);
+}
+
+int	main(void)
+{
+	char	*str;
+
+	ft_putstr("$>");
+	signal(SIGINT, sig_handler);
+	while (get_next_line(0, &str) != 0)
+	{
+		first(str);
+		ft_putstr("$>");
+	}
+	return (1);
 }

@@ -6,15 +6,11 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/12 14:30:11 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/23 19:20:16 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
 int	ft_system(char *str)
 {
@@ -23,7 +19,7 @@ int	ft_system(char *str)
 	char		**arg;
 
 	arg = ft_strsplit(str, ' ');
-	if (ft_builtins(arg) == 1)
+	if (ft_builtins(arg) != 0)
 		return (1);
 	k = fork();
 	if (k == 0)
@@ -38,6 +34,7 @@ int	ft_system(char *str)
 	}
 	else
 		exit(-1);
+	return (1);
 }
 
 int	ft_pipe(char *str)
@@ -68,9 +65,10 @@ int	ft_pipe(char *str)
 		else
 			return (-1);
 	}
+	return (1);
 }
 
-int	ft_in(char *str, char *all, int *i, char **av)
+int	ft_in(char *str, char *all, int *i)
 {
 	int	fd;
 	char	*tmp;
@@ -78,6 +76,7 @@ int	ft_in(char *str, char *all, int *i, char **av)
 
 	a = 0;
 	*i = *i + 1;
+	str = str;// checker si il a exectable avant;
 	tmp = malloc(sizeof(char *) * ft_strlen(all));
 	while (all[*i] == ' ')
 		*i = *i + 1;
@@ -92,9 +91,10 @@ int	ft_in(char *str, char *all, int *i, char **av)
 		write(2, "Can't open file\n", 17);
 	else
 		dup2(fd, 0);
+	return (1);
 }
 
-int	ft_out(char *str, char *all, int *i, char **av)
+int	ft_out(char *str, char *all, int *i)
 {
 	int		fd;
 	char	*tmp;
@@ -135,4 +135,5 @@ int	ft_out(char *str, char *all, int *i, char **av)
 		close(fd);
 		close(oldfd);
 	}
+	return (1);
 }

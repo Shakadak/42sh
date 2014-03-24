@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 17:46:42 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/22 12:07:12 by kelickel         ###   ########.fr       */
+/*   Created: 2014/03/14 15:36:08 by kelickel          #+#    #+#             */
+/*   Updated: 2014/03/22 17:19:49 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int			ft_strcmp(char *s1, char *s2)
-{
-	int		a;
+#include "ft_sh.h"
 
-	if (s1 == 0 || s2 == 0)
-		return (- 1);
-	a = 0;
-	while (s1[a] != 0 || s2[a] != 0)
+char	*ft_strdup(char *src)
+{
+	char	*str;
+	int		i;
+
+	str = malloc(sizeof(char) * ft_strlen(src));
+	i = 0;
+	while (src[i] != 0)
 	{
-		if (s1[a] < s2[a])
-			return (0);
-		else if (s1[a] > s2[a])
-			return (0);
-		a = a + 1;
+		str[i] = src[i];
+		i = i + 1;
 	}
-	return (1);
+	str[i] = 0;
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 10:41:26 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/12 11:12:34 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/23 19:18:23 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,20 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+
+typedef struct	s_memory
+{
+	char			*str;
+	struct s_memory	*next;
+}				t_memory;
 
 int		check_exec;
+extern char	**environ;
 
+int	ft_out(char *str, char *all, int *i);
 void	affp(void);
 void	the_cd(char *arg);
 void	ft_putchar(char c);
@@ -43,5 +54,14 @@ void	after_that(char *str);
 void	sig_contc(int sig);
 int		get_next_line(int fd, char **line);
 int		ft_execenv(char **env, char **arg);
-
+int		ft_unsetenv(char **str);
+int		ft_setenv(char **str);
+int		ft_env(char	**arg);
+int		ft_builtins(char **cmd);
+int		ft_in(char *str, char *all, int *i);
+int		ft_pipe(char *str);
+int		ft_in(char *str, char *all, int *i);
+int		ft_system(char *str);
+int		ft_pipe(char *str);
+char	*ft_strdup(char *src);
 #endif
