@@ -6,30 +6,11 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/28 18:22:39 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/22 11:14:20 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 10:30:01 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
-
-void			affp(void)
-{
-	int			a;
-	extern char	**environ;
-
-	a = 0;
-	while (ft_strcmpm("_=", environ[a]) != 1)
-	{
-		if (environ[a] != NULL)
-		{
-			ft_putstr(environ[a]);
-			ft_putchar('\n');
-		}
-		a++;
-	}
-	ft_putstr(environ[a]);
-	ft_putchar('\n');
-}
 
 int				ft_strcmpm(char *one, char *two)
 {
@@ -51,10 +32,11 @@ char			*ft_getenv(char *srch)
 {
 	int			a;
 	int			i;
-	extern char	**environ;
 
 	a = 0;
 	i = 0;
+	if (environ[0] == 0)
+		return (0);
 	while (ft_strcmpm(srch, environ[a]) != 1)
 	{
 		a = a + 1;

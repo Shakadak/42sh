@@ -6,31 +6,37 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:36:52 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/22 20:35:08 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 10:08:23 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
+
+void	ft_print_echo(char **cmd, int i, int opt)
+{
+		while (cmd[i] != 0)
+		{
+			if (cmd[i][0] != '$')
+				ft_putstr(cmd[i]);
+			else
+				ft_putstr(ft_getenv(cmd[i] + 1));
+			i++;
+			if (cmd[i] != 0)
+				ft_putchar(' ');
+		}
+		if (opt == 1)
+			ft_putchar('\n');
+		return ;
+}
 
 int	ft_echo(char **cmd)
 {
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		return (0);
 	if (ft_strcmp(cmd[1], "-n") == 0)
-	{
-		if (cmd[1][0] != '$')
-			ft_putstr(cmd[1]);
-		else
-			ft_putstr(ft_getenv(cmd[1] + 1));
-		ft_putchar('\n');
-	}
+		ft_print_echo(cmd, 1, 1);
 	else
-	{
-		if (cmd[2][0] != '$')
-			ft_putstr(cmd[2]);
-		else
-			ft_putstr(ft_getenv(cmd[2] + 1));
-	}
+		ft_print_echo(cmd, 2, 0);
 	return (1);
 }
 
@@ -59,8 +65,6 @@ int	ft_cd(char **cmd)
 		to_move = ft_getenv("OLDPWD");
 	else
 		to_move = cmd[1];
-	ft_putstr(to_move);
-	ft_putstr("\n");
 	if (chdir(to_move) == 0)
 	{
 		ft_setenv(ch_env);

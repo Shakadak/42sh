@@ -6,16 +6,16 @@
 #    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
-#    Updated: 2014/03/23 19:05:21 by kelickel         ###   ########.fr        #
+#    Updated: 2014/03/25 10:10:01 by kelickel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	42sh
 
 SRCS =	builtins.c ft_exec.c ft_strcat.c ft_strdup.c ft_strnew.c ft_system.c get_next_line.c path.c \
-		ft_atoi.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_strsplit.c ft_unsetenv.c main.c
+		ft_atoi.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_strsplit.c ft_unsetenv.c main.c putendl.c
 
-IFLAGS = -Wall -Wextra -Werror -Iincludes
+IFLAGS = -Wall -Wextra -Werror -g
 
 CC = gcc $(IFLAGS)
 

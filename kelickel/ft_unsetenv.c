@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/21 14:15:29 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/23 20:20:50 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 10:08:40 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		ft_env(char	**arg)
 
 	if (ft_strcmp(arg[0], "env") == 0)
 		return (0);
+	if (ft_strcmp(arg[1], "-i") == 1)
+		return (1);
 	i = 0;
 	while (environ[i] != 0)
 	{
@@ -61,7 +63,7 @@ int		ft_setenv(char **str)
 	ft_strcat(inside, str[1]);
 	ft_strcat(inside, "=");
 	ft_strcat(inside, str[2]);
-	while (environ[i] != 0 && ft_strcmpm(environ[i], str[i]) == 0)
+	while (environ[i] != 0 && ft_strcmpm(environ[i], str[1]) == 0)
 		i++;
 	if (environ[i] == 0)
 	{
