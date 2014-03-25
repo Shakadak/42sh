@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/27 18:11:04 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 11:07:28 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 17:19:57 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char				*to_line(char *buff, int fd, int *bck)
 		str[a++] = buff[i++];
 		if (buff[i] == 0)
 		{
-			free(buff);
 			*bck = read(fd, buff, 511);
 			if (*bck == 0)
 				return (0);

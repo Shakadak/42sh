@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 11:05:44 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 17:28:33 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,11 @@ int	first(char *buff)
 		str[t++] = buff[i++];
 		if (buff[i] == '&' && buff[i + 1] == '&')
 		{
-			ft_putstr("1");
 			str[t++] = buff[i++];
 			str[t++] = buff[i++];
 		}
 		if (buff[i] == '&' || buff[i] == ';')
 		{
-			ft_putstr("2");
 			str[t] = 0;
 			two(str);
 			while (t >= 0)
@@ -138,6 +136,7 @@ int	main(void)
 	{
 		first(str);
 		ft_putstr("$>");
+		free(str);
 	}
 	return (1);
 }

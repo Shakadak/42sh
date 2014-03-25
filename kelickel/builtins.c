@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:36:52 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 10:08:23 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:38:17 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_exit(char **cmd)
 {
 	if (ft_strcmp(cmd[0], "exit") == 0)
 		return (0);
+	ft_putendl("Shell exited sucessfull");
 	exit(ft_atoi(cmd[1]));
 }
 

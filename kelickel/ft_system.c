@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/23 19:20:16 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 17:32:43 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ft_system(char *str)
 	else if (k > 0)
 	{
 		wait(&k);
+		ft_free_all(arg);
 		if (k == 0)
 			return (1);
 		else
@@ -60,6 +61,7 @@ int	ft_pipe(char *str)
 		dup2(fd[0], 0);
 		wait(&k);
 		close(fd[0]);
+		ft_free_all(arg);
 		if (k == 0)
 			return (1);
 		else

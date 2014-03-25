@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   free_double.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 14:33:30 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 17:32:30 by kelickel         ###   ########.fr       */
+/*   Created: 2014/03/25 16:29:38 by kelickel          #+#    #+#             */
+/*   Updated: 2014/03/25 17:07:07 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-void	ft_putchar(char c)
+void	ft_free_all(char **str)
 {
-	write(1, &c, 1);
-}
+	int	i;
 
-void	ft_putstr(char const *s)
-{
-	if (s == 0)
-		return ;
-	write(1, s, ft_strlen(s));
-}
-
-void	ft_putstr_fd(char const *s, int fd)
-{
-	if (s == 0)
-		return ;
-	write(fd, s, ft_strlen(s));
+	i = 0;
+	while (str[i] != 0)
+		free(str[i++]);
+	if (str)
+		free(str);
 }
