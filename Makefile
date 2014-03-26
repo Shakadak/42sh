@@ -1,84 +1,58 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
+#    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/02/26 16:13:36 by cheron            #+#    #+#              #
-#    Updated: 2014/03/26 16:39:56 by mde-jesu         ###   ########.fr        #
+#    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
+#    Updated: 2014/03/26 20:26:10 by croy             ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-OFLAGS =
-RM = @rm -rf
+NAME =	42sh
 
-LIBFT_DIR = ./libft
+SRCS =	free_double.c \
+		main.c \
+		builtins.c \
+		ft_history.c \
+		ft_unsetenv.c \
+		ft_atoi.c \
+		ft_putendl.c \
+		ft_putstr.c \
+		ft_strcat.c \
+		ft_strcmp.c \
+		ft_strdup.c \
+		ft_strlen.c \
+		ft_strnew.c \
+		ft_strsplit.c \
+		ft_strstockintab.c \
+		get_next_line.c \
+		ft_exec.c \
+		ft_system.c \
+		path.c
 
-INCLUDES_DIR = ./libft/includes
-LIBSH = ./libsh/libsh.a
-SRCDIR = ./srcs
-OBJDIR = ./objs
-INCDIR = -I./includes -I./libsh/includes
-LIB_CALL = -L./libsh -lsh
+IFLAGS = -Wall -Wextra -Werror -Iincludes -g
 
-LIBFT = $(LIBFT_DIR)/libft.a
+CC = gcc $(IFLAGS)
 
-NAME = 42sh
+OBJS = $(SRCS:.c=.o)
 
-OBJ_DIR = obj
-SRC_DIR = srcs
+all: $(NAME)
 
-SRC =	$(addprefix squel/, \
-				main.c \
-				clone.c \
-				ft_minishell.c \
-				ft_print_error.c \
-				ft_prompt.c) \
-		$(addprefix builtins/, \
-				ft_echo.c \
-				ft_exit.c \
-				ft_env.c \
-				ft_cd.c \
-				ft_cd2.c \
-				ft_setenv.c \
-				ft_unsetenv.c)
+$(NAME): $(OBJS)
+		@echo "Creation de l'executable \033[1;34m$(NAME)\033[0m"
+		$(CC) -o $(NAME) $(OBJS)
 
-OBJ = $(SRC:.c=.o)
-
-POBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(OBJ)))
-
-COMPILE = $(addprefix $(OBJ_DIR)/, $(OBJ))
-
-all: $(LIBFT) $(OBJ_DIR) $(NAME)
-
-$(LIBFT):
-	@echo "\nCompilation of objects for "$(LIBFT)
-	@($(MAKE) -C $(LIBFT_DIR))
-
-$(NAME): $(COMPILE) $(LIBFT)
-	@echo "\nLinking "$(NAME)""
-	@$(CC) $(CFLAGS) $(OFLAGS) -o $(NAME) $(POBJ) \
-	-L$(LIBFT_DIR) -lft -I$(INCLUDES_DIR)
-	@echo "\n\033[1;36mdone\033[0m"
+%.o: srcs/%.c includes/ft_sh.h
+	$(CC) -c $^
 
 clean:
-	@echo "\nCleaning OBJ"
-	$(RM) $(POBJ)
+		@echo "Remove \033[1;30m$(O)\033[0m"
+		rm -f $(OBJS)
 
-fclean: clean
-	@echo "\nCleaning "$(NAME)""
-	$(RM) $(NAME)
-	@($(MAKE) $@ -C $(LIBFT_DIR))
+fclean:	clean
+		@echo "Remove \033[1;31m$(NAME)\033[0m"
+		rm -f $(NAME)
 
 re: fclean all
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES_DIR) | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $(OBJ_DIR)/$(notdir $@) -I $(INCLUDES_DIR)
-
-$(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
-
-.PHONY: all clean re fclean
