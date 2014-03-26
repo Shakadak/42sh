@@ -6,7 +6,7 @@
 #    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
-#    Updated: 2014/03/25 16:33:59 by kelickel         ###   ########.fr        #
+#    Updated: 2014/03/26 01:09:12 by kelickel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME =	42sh
 
 SRCS =	builtins.c ft_exec.c ft_strcat.c ft_strdup.c ft_strnew.c ft_system.c get_next_line.c path.c \
 		ft_atoi.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_strsplit.c ft_unsetenv.c main.c putendl.c \
-		free_double.c
+		free_double.c ft_strstockintab.c ft_history.c
 
 IFLAGS = -Wall -Wextra -Werror -g
 

@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 17:28:33 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 01:45:17 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	sig_handler(int sig)
 {
 	if (sig == 2)
-		write(1, "\n$>", 3);
+		 ft_putstr_fd("\033[1;34m42Sh\033[0m >> ", 1);
 }
 
-int three(char *buff)
+int		three(char *buff)
 {
 	char	*tmp;
 	int		i;
@@ -56,7 +56,7 @@ int three(char *buff)
 	return (back);
 }
 
-int	two(char *buff)
+int		two(char *buff)
 {
 	char	*str;
 	int		t;
@@ -66,7 +66,7 @@ int	two(char *buff)
 	t = ft_strlen(buff);
 	str = (char *)malloc(sizeof(char) * (t + 1));
 	t = 0;
-	while(buff[i] != 0)
+	while (buff[i] != 0)
 	{
 		str[t++] = buff[i++];
 		if (buff[i] == '|' && buff[i + 1] == '|')
@@ -94,7 +94,7 @@ int	two(char *buff)
 	return (1);
 }
 
-int	first(char *buff)
+int		first(char *buff)
 {
 	char	*str;
 	int		t;
@@ -126,16 +126,21 @@ int	first(char *buff)
 	return (1);
 }
 
-int	main(void)
+int		main(int ac, char **av, char **env)
 {
 	char	*str;
 
-	ft_putstr("$>");
+	(void)ac;
+	(void)av;
+	g_list = NULL;
+	g_environ = env;
+	 ft_putstr_fd("\033[1;34m42Sh\033[0m >> ", 1);
 	signal(SIGINT, sig_handler);
 	while (get_next_line(0, &str) != 0)
 	{
+		add_history(&g_list, create(str));
 		first(str);
-		ft_putstr("$>");
+		ft_putstr_fd("\033[1;34m42Sh\033[0m >> ", 1);
 		free(str);
 	}
 	return (1);

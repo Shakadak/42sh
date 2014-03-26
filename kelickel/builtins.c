@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:36:52 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 16:38:17 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 01:17:47 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	ft_print_echo(char **cmd, int i, int opt)
 {
-		while (cmd[i] != 0)
-		{
-			if (cmd[i][0] != '$')
-				ft_putstr(cmd[i]);
-			else
-				ft_putstr(ft_getenv(cmd[i] + 1));
-			i++;
-			if (cmd[i] != 0)
-				ft_putchar(' ');
-		}
-		if (opt == 1)
-			ft_putchar('\n');
-		return ;
+	while (cmd[i] != 0)
+	{
+		if (cmd[i][0] != '$')
+			ft_putstr(cmd[i]);
+		else
+			ft_putstr(ft_getenv(cmd[i] + 1));
+		i++;
+		if (cmd[i] != 0)
+			ft_putchar(' ');
+	}
+	if (opt == 1)
+		ft_putchar('\n');
+	return ;
 }
 
-int	ft_echo(char **cmd)
+int		ft_echo(char **cmd)
 {
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		return (0);
@@ -40,7 +40,7 @@ int	ft_echo(char **cmd)
 	return (1);
 }
 
-int	ft_exit(char **cmd)
+int		ft_exit(char **cmd)
 {
 	if (ft_strcmp(cmd[0], "exit") == 0)
 		return (0);
@@ -48,7 +48,7 @@ int	ft_exit(char **cmd)
 	exit(ft_atoi(cmd[1]));
 }
 
-int	ft_cd(char **cmd)
+int		ft_cd(char **cmd)
 {
 	char	buf[512];
 	char	**ch_env;
@@ -77,9 +77,9 @@ int	ft_cd(char **cmd)
 	return (0);
 }
 
-int	ft_builtins(char **cmd)
+int		ft_builtins(char **cmd)
 {
-	int		(*fct[6])(char **);
+	int		(*fct[7])(char **);
 	int		i;
 	int		b;
 
@@ -91,7 +91,8 @@ int	ft_builtins(char **cmd)
 	fct[3] = ft_env;
 	fct[4] = ft_setenv;
 	fct[5] = ft_unsetenv;
-	while(i < 6 && b == 0)
+	fct[6] = add_in_history;
+	while (i < 7 && b == 0)
 		b = fct[i++](cmd);
 	return (b);
 }

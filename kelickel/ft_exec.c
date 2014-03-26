@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:22:08 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 17:33:32 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 19:31:55 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				ft_execenv(char **env, char **arg)
 	int			a;
 	char		*x;
 
-	check_exec = 1;
+	g_check_exec = 1;
 	execve(arg[0], arg, env);
 	a = 0;
 	while (a < 8)
@@ -34,7 +34,7 @@ int				ft_execenv(char **env, char **arg)
 			ft_putstr_fd("$: Command not found: ", 2);
 			ft_putstr_fd(arg[0], 2);
 			write(2, "\n", 1);
-			check_exec = 0;
+			g_check_exec = 0;
 			exit(-1);
 		}
 		x = ft_strnew(ft_strlen(str) + ft_strlen(arg[0]) + 2);

@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 10:41:26 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 17:34:03 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 01:15:16 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-typedef struct	s_memory
+int		g_check_exec;
+char	**g_environ;
+
+typedef struct		s_root
 {
 	char			*str;
-	struct s_memory	*next;
-}				t_memory;
+	struct s_root	*next;
+	struct s_root	*prev;
+}					t_root;
 
-int		check_exec;
-extern char	**environ;
+t_root	*g_list;
 
-int	ft_out(char *str, char *all, int *i);
+int		ft_out(char *str, char *all, int *i);
 void	affp(void);
 void	the_cd(char *arg);
 void	ft_putchar(char c);
@@ -67,4 +70,8 @@ char	*ft_strdup(char *src);
 void	ft_putendl(char *str);
 void	ft_free_all(char **str);
 void	ft_putstr_fd(char const *s, int fd);
+char	**ft_strsplit_r(char *str);
+void	add_history(t_root **list, t_root *item);
+t_root	*create(char *str);
+int		add_in_history(char **arg);
 #endif

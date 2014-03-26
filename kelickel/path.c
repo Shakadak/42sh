@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/28 18:22:39 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 10:30:01 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 19:42:14 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ char			*ft_getenv(char *srch)
 
 	a = 0;
 	i = 0;
-	if (environ[0] == 0)
+	if (g_environ[0] == 0)
 		return (0);
-	while (ft_strcmpm(srch, environ[a]) != 1)
+	while (ft_strcmpm(srch, g_environ[a]) != 1)
 	{
 		a = a + 1;
-		if (environ[a] == 0)
+		if (g_environ[a] == 0)
 			return (0);
 	}
-	while (environ[a][i] != '=')
+	while (g_environ[a][i] != '=')
 		i = i + 1;
-	return (environ[a] + i + 1);
+	return (g_environ[a] + i + 1);
 }
 
 char			*ft_path(void)

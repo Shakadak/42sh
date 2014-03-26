@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 17:32:43 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:45:16 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_system(char *str)
 	extern char	**environ;
 	char		**arg;
 
-	arg = ft_strsplit(str, ' ');
+	arg = ft_strsplit_r(str);
 	if (ft_builtins(arg) != 0)
 		return (1);
 	k = fork();
@@ -45,7 +45,7 @@ int	ft_pipe(char *str)
 	extern char	**environ;
 	char		**arg;
 
-	arg = ft_strsplit(str, ' ');
+	arg = ft_strsplit_r(str);
 	pipe(fd);
 	k = fork();
 	if (k == 0)
@@ -72,13 +72,13 @@ int	ft_pipe(char *str)
 
 int	ft_in(char *str, char *all, int *i)
 {
-	int	fd;
+	int		fd;
 	char	*tmp;
-	int	a;
+	int		a;
 
 	a = 0;
 	*i = *i + 1;
-	str = str;// checker si il a exectable avant;
+	str = str;/* checker si il a exectable avant;*/
 	tmp = malloc(sizeof(char *) * ft_strlen(all));
 	while (all[*i] == ' ')
 		*i = *i + 1;
