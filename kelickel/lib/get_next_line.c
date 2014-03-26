@@ -6,11 +6,11 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/27 18:11:04 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 17:19:57 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 17:53:25 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
 int					ft_strlenm(char *str, int *a)
 {

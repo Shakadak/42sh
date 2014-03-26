@@ -6,11 +6,11 @@
 /*   By: croy <croy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 21:38:50 by croy              #+#    #+#             */
-/*   Updated: 2014/03/26 00:53:19 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 17:53:09 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
 
 static void		dupl(char *str, char *dup, char c)

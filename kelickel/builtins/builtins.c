@@ -6,11 +6,11 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:36:52 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 08:23:56 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 17:42:44 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
 void	ft_print_echo(char **cmd, int i, int opt)
 {

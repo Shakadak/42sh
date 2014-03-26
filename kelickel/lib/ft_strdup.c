@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/04 14:14:54 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 17:51:20 by kelickel         ###   ########.fr       */
+/*   Created: 2014/03/14 15:36:08 by kelickel          #+#    #+#             */
+/*   Updated: 2014/03/26 17:50:58 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int				ft_env(char **arg)
-{
-	extern char	**environ;
-	int			i;
+#include "../ft_sh.h"
 
-	if (ft_strcmp(arg[0], "env") == 0)
-		return (0);
+char	*ft_strdup(char *src)
+{
+	char	*str;
+	int		i;
+
+	str = malloc(sizeof(char) * ft_strlen(src));
 	i = 0;
-	while (environ[i] != 0)
+	while (src[i] != 0)
 	{
-		ft_putstr(environ[i++]);
-		ft_putchar('\n');
+		str[i] = src[i];
+		i = i + 1;
 	}
-	return (1);
+	str[i] = 0;
+	return (str);
 }

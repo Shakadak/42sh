@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 11:48:40 by kelickel          #+#    #+#             */
-/*   Updated: 2014/02/07 12:20:39 by kelickel         ###   ########.fr       */
+/*   Created: 2014/03/04 14:14:54 by kelickel          #+#    #+#             */
+/*   Updated: 2014/03/26 17:48:47 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
-size_t				ft_strlen(const char *s)
+int				ft_env(char **arg)
 {
-	size_t	i;
+	extern char	**environ;
+	int			i;
 
-	if (!s)
+	if (ft_strcmp(arg[0], "env") == 0)
 		return (0);
 	i = 0;
-	while (s[i] != '\0')
+	while (environ[i] != 0)
 	{
-		i++;
+		ft_putstr(environ[i++]);
+		ft_putchar('\n');
 	}
-	return (i);
+	return (1);
 }

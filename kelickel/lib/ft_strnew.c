@@ -6,11 +6,11 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 14:07:27 by kelickel          #+#    #+#             */
-/*   Updated: 2014/02/07 12:20:55 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 17:52:11 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
 char					*ft_strnew(size_t size)
 {

@@ -6,11 +6,11 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/28 18:22:39 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 19:42:14 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 17:54:04 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
 int				ft_strcmpm(char *one, char *two)
 {

@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/14 15:36:08 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/22 17:19:49 by kelickel         ###   ########.fr       */
+/*   Created: 2013/11/19 14:33:30 by kelickel          #+#    #+#             */
+/*   Updated: 2014/03/26 17:50:35 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
-char	*ft_strdup(char *src)
+void	ft_putchar(char c)
 {
-	char	*str;
-	int		i;
+	write(1, &c, 1);
+}
 
-	str = malloc(sizeof(char) * ft_strlen(src));
-	i = 0;
-	while (src[i] != 0)
-	{
-		str[i] = src[i];
-		i = i + 1;
-	}
-	str[i] = 0;
-	return (str);
+void	ft_putstr(char const *s)
+{
+	if (s == 0)
+		return ;
+	write(1, s, ft_strlen(s));
+}
+
+void	ft_putstr_fd(char const *s, int fd)
+{
+	if (s == 0)
+		return ;
+	write(fd, s, ft_strlen(s));
 }

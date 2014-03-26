@@ -6,11 +6,11 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 09:39:01 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 01:01:12 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 17:52:49 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
 int			nbr_word(char const *s, char c)
 {

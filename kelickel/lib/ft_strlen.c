@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putendl.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/25 09:19:11 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 09:19:55 by kelickel         ###   ########.fr       */
+/*   Created: 2013/11/19 11:48:40 by kelickel          #+#    #+#             */
+/*   Updated: 2014/03/26 17:51:57 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
-void	ft_putendl(char *str)
+size_t				ft_strlen(const char *s)
 {
-	ft_putstr(str);
-	ft_putchar('\n');
+	size_t	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }

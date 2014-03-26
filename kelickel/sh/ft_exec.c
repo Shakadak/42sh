@@ -6,11 +6,11 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:22:08 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 07:57:35 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 17:53:51 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "../ft_sh.h"
 
 int				ft_exec(char **env, char **arg)
 {
