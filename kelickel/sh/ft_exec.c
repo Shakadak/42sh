@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:22:08 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 17:53:51 by mde-jesu         ###   ########.fr       */
+/*   Updated: 2014/03/26 19:25:54 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int				ft_execenv(char **env, char **arg)
 
 	g_check_exec = 1;
 	execve(arg[0], arg, env);
-	a = 0;
-	while (a < 8)
+	a = -1;
+	while (++a < 8)
 	{
 		str = ft_path();
 		if (str == 0)
@@ -42,7 +42,6 @@ int				ft_execenv(char **env, char **arg)
 		ft_strcat(x, "/");
 		ft_strcat(x, arg[0]);
 		execve(x, arg, env);
-		a = a + 1;
 	}
 	exit (-1);
 }
