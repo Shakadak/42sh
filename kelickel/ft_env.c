@@ -6,14 +6,14 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 14:14:54 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/04 15:00:40 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/25 17:51:20 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_env(char **arg)
+int				ft_env(char **arg)
 {
-	extern char **environ;
-	int	i;
+	extern char	**environ;
+	int			i;
 
 	if (ft_strcmp(arg[0], "env") == 0)
 		return (0);

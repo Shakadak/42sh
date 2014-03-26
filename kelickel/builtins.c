@@ -6,42 +6,49 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:36:52 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/22 20:35:08 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 08:23:56 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-int	ft_echo(char **cmd)
+void	ft_print_echo(char **cmd, int i, int opt)
+{
+	while (cmd[i] != 0)
+	{
+		if (cmd[i][0] != '$')
+			ft_putstr(cmd[i]);
+		else
+			ft_putstr(ft_getenv(cmd[i] + 1));
+		i++;
+		if (cmd[i] != 0)
+			ft_putchar(' ');
+	}
+	if (opt == 1)
+		ft_putchar('\n');
+	return ;
+}
+
+int		ft_echo(char **cmd)
 {
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		return (0);
 	if (ft_strcmp(cmd[1], "-n") == 0)
-	{
-		if (cmd[1][0] != '$')
-			ft_putstr(cmd[1]);
-		else
-			ft_putstr(ft_getenv(cmd[1] + 1));
-		ft_putchar('\n');
-	}
+		ft_print_echo(cmd, 1, 1);
 	else
-	{
-		if (cmd[2][0] != '$')
-			ft_putstr(cmd[2]);
-		else
-			ft_putstr(ft_getenv(cmd[2] + 1));
-	}
+		ft_print_echo(cmd, 2, 0);
 	return (1);
 }
 
-int	ft_exit(char **cmd)
+int		ft_exit(char **cmd)
 {
 	if (ft_strcmp(cmd[0], "exit") == 0)
 		return (0);
+	ft_putendl("Shell exited sucessfull");
 	exit(ft_atoi(cmd[1]));
 }
 
-int	ft_cd(char **cmd)
+int		ft_cd(char **cmd)
 {
 	char	buf[512];
 	char	**ch_env;
@@ -59,22 +66,21 @@ int	ft_cd(char **cmd)
 		to_move = ft_getenv("OLDPWD");
 	else
 		to_move = cmd[1];
-	ft_putstr(to_move);
-	ft_putstr("\n");
 	if (chdir(to_move) == 0)
 	{
 		ft_setenv(ch_env);
 		ch_env[1] = ft_strdup("PWD");
 		ch_env[2] = getcwd(buf, 256);
 		ft_setenv(ch_env);
+		free(ch_env[0]);
 		return (1);
 	}
 	return (0);
 }
 
-int	ft_builtins(char **cmd)
+int		ft_builtins(char **cmd)
 {
-	int		(*fct[6])(char **);
+	int		(*fct[7])(char **);
 	int		i;
 	int		b;
 
@@ -86,7 +92,8 @@ int	ft_builtins(char **cmd)
 	fct[3] = ft_env;
 	fct[4] = ft_setenv;
 	fct[5] = ft_unsetenv;
-	while(i < 6 && b == 0)
+	fct[6] = add_in_history;
+	while (i < 7 && b == 0)
 		b = fct[i++](cmd);
 	return (b);
 }

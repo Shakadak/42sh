@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/23 19:20:16 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 08:00:42 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_system(char *str)
 	extern char	**environ;
 	char		**arg;
 
-	arg = ft_strsplit(str, ' ');
+	arg = ft_strsplit_r(str);
 	if (ft_builtins(arg) != 0)
 		return (1);
 	k = fork();
@@ -27,6 +27,7 @@ int	ft_system(char *str)
 	else if (k > 0)
 	{
 		wait(&k);
+		ft_free_all(arg);
 		if (k == 0)
 			return (1);
 		else
@@ -44,7 +45,7 @@ int	ft_pipe(char *str)
 	extern char	**environ;
 	char		**arg;
 
-	arg = ft_strsplit(str, ' ');
+	arg = ft_strsplit_r(str);
 	pipe(fd);
 	k = fork();
 	if (k == 0)
@@ -60,6 +61,7 @@ int	ft_pipe(char *str)
 		dup2(fd[0], 0);
 		wait(&k);
 		close(fd[0]);
+		ft_free_all(arg);
 		if (k == 0)
 			return (1);
 		else
@@ -70,13 +72,13 @@ int	ft_pipe(char *str)
 
 int	ft_in(char *str, char *all, int *i)
 {
-	int	fd;
+	int		fd;
 	char	*tmp;
-	int	a;
+	int		a;
 
 	a = 0;
 	*i = *i + 1;
-	str = str;// checker si il a exectable avant;
+	str = str;/* checker si il a exectable avant;*/
 	tmp = malloc(sizeof(char *) * ft_strlen(all));
 	while (all[*i] == ' ')
 		*i = *i + 1;
@@ -87,6 +89,7 @@ int	ft_in(char *str, char *all, int *i)
 	}
 	tmp[*i] = 0;
 	fd = open(tmp, O_RDONLY);
+	free(tmp);
 	if (fd == -1)
 		write(2, "Can't open file\n", 17);
 	else

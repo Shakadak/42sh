@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   free_double.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 12:23:47 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 08:20:54 by kelickel         ###   ########.fr       */
+/*   Created: 2014/03/25 16:29:38 by kelickel          #+#    #+#             */
+/*   Updated: 2014/03/25 17:07:07 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char		*ft_strcat(char *s1, const char *s2)
-{
-	int		a;
-	int		b;
+#include "ft_sh.h"
 
-	if (s1 == 0 || s2 == 0)
-		return (s1);
-	a = 0;
-	b = 0;
-	while (s1[b] != 0)
-		b = b + 1;
-	while (s2[a] != 0)
-	{
-		s1[b] = s2[a];
-		a = a + 1;
-		b = b + 1;
-	}
-	s1[b] = 0;
-	return (s1);
+void	ft_free_all(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != 0)
+		free(str[i++]);
+	if (str)
+		free(str);
 }
