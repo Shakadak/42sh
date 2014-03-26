@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/05 11:37:07 by npineau           #+#    #+#             */
-/*   Updated: 2014/03/05 17:44:42 by cheron           ###   ########.fr       */
+/*   Updated: 2014/03/26 18:25:07 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char			**tab_env(t_env *env, int length)
 	if (!env)
 	{
 		new = (char **)malloc(sizeof(char *) * (length + 1));
-		new[length + 1] = NULL;
+		new[length] = NULL;
 		return (new);
 	}
 	new = tab_env(env->next, length + 1);
