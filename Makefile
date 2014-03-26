@@ -6,7 +6,7 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/26 16:13:36 by cheron            #+#    #+#              #
-#    Updated: 2014/03/05 15:10:37 by npineau          ###   ########.fr        #
+#    Updated: 2014/03/26 16:39:56 by mde-jesu         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,6 +18,11 @@ RM = @rm -rf
 LIBFT_DIR = ./libft
 
 INCLUDES_DIR = ./libft/includes
+LIBSH = ./libsh/libsh.a
+SRCDIR = ./srcs
+OBJDIR = ./objs
+INCDIR = -I./includes -I./libsh/includes
+LIB_CALL = -L./libsh -lsh
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
