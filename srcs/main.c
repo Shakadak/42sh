@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 09:28:17 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 20:58:08 by croy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	sig_handler(int sig)
 {
 	if (sig == 2)
 		 ft_putstr_fd("\n\033[1;34m42Sh\033[0m >> ", 1);
+	if (sig == SIGTSTP)
+		return ;
 }
 
 int		three(char *buff)
@@ -136,6 +138,7 @@ int		main(int ac, char **av, char **env)
 	g_environ = env;
 	 ft_putstr_fd("\033[1;34m42Sh\033[0m >> ", 1);
 	signal(SIGINT, sig_handler);
+	signal(SIGTSTP, sig_handler);
 	while (get_next_line(0, &str) != 0)
 	{
 		add_history(&g_list, create(str));
