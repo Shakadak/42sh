@@ -6,7 +6,7 @@
 #    By: mde-jesu <mde-jesu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 18:01:32 by mde-jesu          #+#    #+#              #
-#    Updated: 2014/02/25 12:05:56 by mde-jesu         ###   ########.fr        #
+#    Updated: 2014/02/25 12:45:15 by mde-jesu         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,6 +14,7 @@ NAME = libsh.a
 SRC_FT = ft_atoi.c \
 		ft_putstr_fd.c \
 		ft_strcmp.c \
+		ft_strsub.c \
 		ft_strsplit.c
 
 SRC_GNL = get_next_line.c

@@ -6,7 +6,7 @@
 /*   By: mde-jesu <mde-jesu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 12:19:40 by mde-jesu          #+#    #+#             */
-/*   Updated: 2014/02/25 12:19:41 by mde-jesu         ###   ########.fr       */
+/*   Updated: 2014/02/25 12:46:27 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 */
 
 # include "libsh.h"
+# include "gnl.h"
 # include <sys/types.h>
 # include <sys/uio.h>
 

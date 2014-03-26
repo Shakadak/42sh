@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:04:14 by kelickel          #+#    #+#             */
-/*   Updated: 2014/02/17 16:15:02 by croy             ###   ########.fr       */
+/*   Updated: 2014/02/25 12:49:37 by mde-jesu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(void)
 	char	**tab;
 
 	ft_prompt();
-	while (get_next_line(0, &str) != 0)
+	while (get_next_line(0, &str))
 	{
 		tab = ft_strsplit(str, ' ');
 		if (ft_builtins(tab) == 1)

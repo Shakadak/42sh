@@ -6,7 +6,7 @@
 #    By: mde-jesu <mde-jesu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 18:01:32 by mde-jesu          #+#    #+#              #
-#    Updated: 2014/02/25 12:06:29 by mde-jesu         ###   ########.fr        #
+#    Updated: 2014/02/25 12:46:49 by mde-jesu         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,7 +19,7 @@ LIBSH = ./libsh/libsh.a
 SRCDIR = ./srcs
 OBJDIR = ./objs
 INCDIR = -I./includes -I./libsh/includes
-LIB_CALL = -L./libsh -lft
+LIB_CALL = -L./libsh -lsh
 
 CFLAGS = -Wall -Werror -Wextra -ansi -pedantic -pedantic-errors
 
