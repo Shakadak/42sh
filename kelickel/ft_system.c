@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 00:45:16 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 08:00:42 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	ft_in(char *str, char *all, int *i)
 	}
 	tmp[*i] = 0;
 	fd = open(tmp, O_RDONLY);
+	free(tmp);
 	if (fd == -1)
 		write(2, "Can't open file\n", 17);
 	else

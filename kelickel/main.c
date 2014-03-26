@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 01:45:17 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/26 09:28:17 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sig_handler(int sig)
 {
 	if (sig == 2)
-		 ft_putstr_fd("\033[1;34m42Sh\033[0m >> ", 1);
+		 ft_putstr_fd("\n\033[1;34m42Sh\033[0m >> ", 1);
 }
 
 int		three(char *buff)
@@ -101,7 +101,7 @@ int		first(char *buff)
 	int		i;
 
 	i = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(buff)));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(buff) + 1));
 	t = 0;
 	while (buff[i] != '\0')
 	{
