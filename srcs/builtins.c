@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:36:52 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 20:26:22 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 12:27:08 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		ft_cd(char **cmd)
 		ch_env[1] = ft_strdup("PWD");
 		ch_env[2] = getcwd(buf, 256);
 		ft_setenv(ch_env);
-		free(ch_env[0]);
+		free(ch_env);
 		return (1);
 	}
 	return (0);

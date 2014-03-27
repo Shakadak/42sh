@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/21 14:15:29 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 21:08:26 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 12:23:40 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,6 @@ int		ft_setenv(char **str)
 		g_environ[++i] = 0;
 	}
 	else
-	{
-		ft_putchar('n');
-		sleep(6);
 		g_environ[i] = inside;
-	}
-	ft_putchar('e');
 	return (1);
 }

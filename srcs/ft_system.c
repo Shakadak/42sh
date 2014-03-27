@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 20:29:20 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 11:37:41 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,15 @@ int	ft_in(char *str, char *all, int *i)
 	int		fd;
 	char	*tmp;
 	int		a;
+	char	**ded;
 
 	a = 0;
 	*i = *i + 1;
-	str = str;/* checker si il a exectable avant;*/
-	tmp = malloc(sizeof(char *) * ft_strlen(all));
+	tmp = (char *)malloc(sizeof(char *) * ft_strlen(all));
+	ded = ft_strsplit(str, '<');
 	while (all[*i] == ' ')
 		*i = *i + 1;
-	while (all[*i] != ' ')
+	while (all[*i] != ' ' && all[*i] != 0)
 	{
 		tmp[a++] = all[*i];
 		*i = *i + 1;
@@ -93,7 +94,12 @@ int	ft_in(char *str, char *all, int *i)
 	if (fd == -1)
 		write(2, "Can't open file\n", 17);
 	else
+	{
 		dup2(fd, 0);
+		if (ded[0] != 0)
+			ft_system(ded[0]);
+	}
+	ft_free_all(ded);
 	return (1);
 }
 

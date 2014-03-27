@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 09:39:01 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 20:28:40 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 12:46:15 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char		*instr(char const *s, char c, int *i, char *str)
 	int	e;
 
 	e = 0;
-	while (s[*i] == c)
+	while (s[*i] == c || s[*i] == '\t')
 	{
 		*i = *i + 1;
 	}
@@ -70,7 +70,7 @@ char		*instr(char const *s, char c, int *i, char *str)
 		*i = *i + 1;
 	}
 	str[e] = '\0';
-	while (s[*i] == c)
+	while (s[*i] == c || s[*i] == '\t')
 	{
 		*i = *i + 1;
 	}

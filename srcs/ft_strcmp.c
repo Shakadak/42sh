@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 17:46:42 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/25 17:53:02 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 12:28:23 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ int			ft_strcmp(char *s1, char *s2)
 	int		a;
 
 	if (s1 == 0 || s2 == 0)
-		return (-1);
+		return (0);
 	a = 0;
 	while (s1[a] != 0 || s2[a] != 0)
 	{
@@ -25,5 +25,7 @@ int			ft_strcmp(char *s1, char *s2)
 			return (0);
 		a = a + 1;
 	}
+	if (s1[a] != 0 || s2[a] != 0)
+		return (0);
 	return (1);
 }
