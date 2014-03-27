@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:22:08 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 19:59:16 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 22:21:17 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ int				ft_exec(char **env, char **arg)
 int				ft_execenv(char **env, char **arg)
 {
 	char		*str;
-	int			a;
 	char		*x;
 
 	g_check_exec = 1;
 	execve(arg[0], arg, env);
-	a = -1;
-	while (++a < 8)
+	str = (char *)1;
+	while (str)
 	{
 		str = ft_path();
 		if (str == 0)
