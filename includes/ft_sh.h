@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 10:41:26 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 17:54:03 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 18:12:32 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_root				*create(char *str);
 int					add_in_history(char **arg);
 char				*new_str(char *str);
 char				**ft_old_pwd(char **ch_env);
-void				ft_in_norme(char **ded, char *tmp, int fd);
+void				ft_in_standard(char **ded, char *tmp, int fd);
 int					what_to_exec(char *buff, int i, char *tmp);
 char				*ft_bzero(char *str);
 int					three(char *buff);

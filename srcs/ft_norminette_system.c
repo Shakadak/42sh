@@ -6,13 +6,13 @@
 /*   By: croy <croy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/27 16:35:12 by croy              #+#    #+#             */
-/*   Updated: 2014/03/27 16:43:53 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 18:12:02 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-void	ft_in_norme(char **ded, char *tmp, int fd)
+void	ft_in_standard(char **ded, char *tmp, int fd)
 {
 	if ((fd = open(tmp, O_RDONLY)) == -1)
 		write(2, "Can't open file\n", 17);
