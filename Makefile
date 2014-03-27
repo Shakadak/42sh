@@ -6,13 +6,14 @@
 #    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
-#    Updated: 2014/03/27 15:53:04 by kelickel         ###   ########.fr        #
+#    Updated: 2014/03/27 16:40:02 by croy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	42sh
 
 SRCS =	free_double.c \
+		ft_norminette_system.c \
 		main.c \
 		builtins.c \
 		ft_history.c \

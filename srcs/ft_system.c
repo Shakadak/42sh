@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 16:29:20 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 16:43:05 by croy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	ft_in(char *str, char *all, int *i)
 	int		a;
 	char	**ded;
 
+	fd = 0;
 	a = 0;
 	*i = *i + 1;
 	tmp = (char *)malloc(sizeof(char *) * ft_strlen(all));
@@ -86,16 +87,7 @@ int	ft_in(char *str, char *all, int *i)
 		*i = *i + 1;
 	}
 	tmp[*i] = 0;
-	fd = open(tmp, O_RDONLY);
-	free(tmp);
-	if (fd == -1)
-		write(2, "Can't open file\n", 17);
-	else
-	{
-		dup2(fd, 0);
-		if (ded[0] != 0)
-			ft_system(ded[0]);
-	}
+	ft_in_norme(ded, tmp, fd);
 	ft_free_all(ded);
 	return (1);
 }
