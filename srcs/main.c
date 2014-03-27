@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 18:29:08 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 20:06:44 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		three(char *buff)
 		while (buff[i] != '<' && buff[i] != '>' && buff[i] && buff[i] != '|')
 			tmp[t++] = buff[i++];
 		tmp[t] = '\0';
-		back = what_to_exec(buff, i, tmp);
+		back = what_to_exec(buff, &i, tmp);
 		while (t != 0)
 			tmp[t--] = 0;
 		if (buff[i] != 0)

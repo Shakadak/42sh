@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 18:13:31 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 20:38:24 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int	ft_in(char *str, char *all, int *i)
 
 int	ft_out(char *str, char *all, int *i)
 {
-	int		fd;
 	char	*tmp;
 	int		a;
 	int		oldfd;
@@ -103,35 +102,21 @@ int	ft_out(char *str, char *all, int *i)
 	oldfd = dup(1);
 	a = 0;
 	*i = *i + 1;
+	param = 0;
 	if (all[*i] == '>')
 	{
 		param = 1;
 		*i = *i + 1;
 	}
-	else
-		param = 0;
 	while (all[*i] == ' ' || all[*i] == '\t')
 		*i = *i + 1;
 	tmp = malloc(sizeof(char *) * ft_strlen(all));
-	while (all[*i] != ' ' && all[*i] != '\0')
+	while (all[*i] != ' ' && all[*i] != '\0' && all[*i] != ';')
 	{
 		tmp[a++] = all[*i];
 		*i = *i + 1;
 	}
-	tmp[*i] = 0;
-	if (param == 0)
-		fd = open(tmp, O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	else
-		fd = open(tmp, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	if (fd == -1)
-		write(2, "Can't open the file\n", 20);
-	else
-	{
-		dup2(fd, 1);
-		ft_system(str);
-		dup2(oldfd, 1);
-		close(fd);
-		close(oldfd);
-	}
+	tmp[a] = 0;
+	exec_after(str, oldfd, param, tmp);
 	return (1);
 }
