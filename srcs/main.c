@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 20:06:44 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 22:51:50 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	first(char *buff)
 	}
 	str[t] = 0;
 	two(str);
-	free(str);
 }
 
 int		main(int ac, char **av, char **env)
