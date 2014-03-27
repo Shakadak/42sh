@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 21:05:32 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 14:42:23 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int		main(int ac, char **av, char **env)
 	while (get_next_line(0, &str) != 0)
 	{
 		add_history(&g_list, create(str));
-		first(str);
+		first(new_str(str));
 		ft_putstr_fd("\033[1;34m42Sh\033[0m >> ", 1);
 		free(str);
 	}

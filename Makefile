@@ -6,7 +6,7 @@
 #    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
-#    Updated: 2014/03/27 11:45:38 by kelickel         ###   ########.fr        #
+#    Updated: 2014/03/27 14:42:53 by kelickel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS =	free_double.c \
 		get_next_line.c \
 		ft_exec.c \
 		ft_system.c \
-		path.c
+		path.c \
+		new_str.c
 
 IFLAGS = -Wall -Wextra -Werror -Iincludes -g
 

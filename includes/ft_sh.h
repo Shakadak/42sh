@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 10:41:26 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/26 19:17:09 by npineau          ###   ########.fr       */
+/*   Updated: 2014/03/27 14:45:41 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ char				**ft_strsplit_r(char *str);
 void				add_history(t_root **list, t_root *item);
 t_root				*create(char *str);
 int					add_in_history(char **arg);
+char				*new_str(char *str);
 #endif
