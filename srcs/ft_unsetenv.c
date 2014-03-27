@@ -6,15 +6,15 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/21 14:15:29 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 12:23:40 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:17:43 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-int		ft_env(char	**arg)
+int			ft_env(char	**arg)
 {
-	int	i;
+	int		i;
 
 	if (ft_strcmp(arg[0], "env") == 0)
 		return (0);
@@ -29,9 +29,9 @@ int		ft_env(char	**arg)
 	return (1);
 }
 
-int		ft_unsetenv(char **str)
+int			ft_unsetenv(char **str)
 {
-	int	i;
+	int		i;
 
 	if (ft_strcmp(str[0], "unsetenv") == 0)
 		return (0);
@@ -46,9 +46,9 @@ int		ft_unsetenv(char **str)
 	return (1);
 }
 
-int		ft_setenv(char **str)
+int			ft_setenv(char **str)
 {
-	int	i;
+	int		i;
 	char	*inside;
 
 	if (ft_strcmp(str[0], "setenv") == 0)

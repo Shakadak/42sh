@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 10:36:52 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 12:27:08 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 16:09:02 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ int		ft_cd(char **cmd)
 
 	if (ft_strcmp(cmd[0], "cd") == 0)
 		return (0);
-	ch_env = (char **)malloc(sizeof(char *) * 3);
-	ch_env[0] = ft_strdup("setenv");
-	ch_env[1] = ft_strdup("OLDPWD");
-	ch_env[2] = getcwd(buf, 511);
+	ch_env = 0;
+	ch_env = ft_old_pwd(ch_env);
 	if (cmd[1] == 0)
 		to_move = ft_getenv("HOME");
 	else if (ft_strcmp(cmd[1], "-") == 1)
@@ -75,7 +73,7 @@ int		ft_cd(char **cmd)
 		free(ch_env);
 		return (1);
 	}
-	return (0);
+	return (1);
 }
 
 int		ft_builtins(char **cmd)

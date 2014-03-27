@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/27 18:11:04 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 14:47:38 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:29:50 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ char				*to_line(char *buff, int fd, int *bck)
 	return (str);
 }
 
-int				get_next_line(int fd, char **line)
+int					get_next_line(int fd, char **line)
 {
-	static char	buff[4096];
-	static int	a;
+	static char		buff[4096];
+	static int		a;
 
 	if (fd < 0)
 		return (-1);

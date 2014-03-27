@@ -6,7 +6,7 @@
 /*   By: croy <croy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/26 00:35:55 by croy              #+#    #+#             */
-/*   Updated: 2014/03/26 20:26:33 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 15:09:18 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 t_root	*create(char *str)
 {
 	t_root	*item;
+
 	item = NULL;
-	item = (t_root *) malloc(sizeof(t_root));
+	item = (t_root *)malloc(sizeof(t_root));
 	item->str = ft_strdup(str);
 	item->next = NULL;
 	return (item);

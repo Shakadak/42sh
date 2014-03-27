@@ -6,17 +6,16 @@
 /*   By: croy <croy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 21:38:50 by croy              #+#    #+#             */
-/*   Updated: 2014/03/26 20:29:03 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 15:42:59 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-
 static void		dupl(char *str, char *dup, char c)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 
 	i = 0;
 	j = 0;
@@ -32,14 +31,14 @@ static void		dupl(char *str, char *dup, char c)
 	dup[i] = '\0';
 }
 
-char		*epur_str(char *str, char c)
+char			*epur_str(char *str, char c)
 {
-	int		i;
-	int		j;
-	int		count;
-	char	*dup;
+	int			i;
+	int			count;
+	char		*dup;
 
-	count = i = j = 0;
+	count = 0;
+	i = 0;
 	while (str[i])
 	{
 		if (str[i] != c)
@@ -52,11 +51,11 @@ char		*epur_str(char *str, char c)
 	return (dup);
 }
 
-char		**ft_strsplit_r(char *str)
+char			**ft_strsplit_r(char *str)
 {
-	char	**tab;
-	char	*cpy;
-	char	*fcpy;
+	char		**tab;
+	char		*cpy;
+	char		*fcpy;
 
 	cpy = epur_str(str, '"');
 	fcpy = epur_str(cpy, '\t');
