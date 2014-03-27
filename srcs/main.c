@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 15:18:17 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 16:57:42 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,15 @@ int		three(char *buff)
 	int		back;
 
 	i = 0;
-	t = ft_strlen(buff);
-	tmp = malloc(sizeof(char) * (t + 1));
-	while (t != 0)
-		tmp[t--] = 0;
 	fd = dup(0);
+	tmp = ft_bzero(buff);
 	while (buff[i] != 0)
 	{
 		t = 0;
 		while (buff[i] != '<' && buff[i] != '>' && buff[i] != 0 && buff[i] != '|')
 			tmp[t++] = buff[i++];
 		tmp[t] = '\0';
-		if (buff[i] == '|')
-			back = ft_pipe(tmp);
-		else if (buff[i] == '<')
-			back = ft_in(tmp, buff, &i);
-		else if (buff[i] == '>')
-			back = ft_out(tmp, buff, &i);
-		else
-			back = ft_system(tmp);
+		back = what_to_exec(buff, i, tmp);
 		while (t != 0)
 			tmp[t--] = 0;
 		if (buff[i] != 0)
