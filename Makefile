@@ -6,7 +6,7 @@
 #    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
-#    Updated: 2014/03/27 14:42:53 by kelickel         ###   ########.fr        #
+#    Updated: 2014/03/27 14:52:49 by croy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(NAME): $(OBJS)
 		$(CC) -o $(NAME) $(OBJS)
 
 %.o: srcs/%.c includes/ft_sh.h
-	$(CC) -c $^
+	$(CC) -c $<
 
 clean:
 		@echo "Remove \033[1;30m$(O)\033[0m"
