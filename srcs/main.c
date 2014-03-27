@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:31:59 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 18:03:06 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 18:29:08 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		two(char *buff)
 	return (1);
 }
 
-int		first(char *buff)
+void	first(char *buff)
 {
 	char	*str;
 	int		t;
@@ -89,7 +89,8 @@ int		first(char *buff)
 	while (buff[i] != '\0')
 	{
 		str[t++] = buff[i++];
-		if ((buff[i] == '&' || buff[i] == ';') && buff[i + 1] != '&')
+		if ((buff[i] == '&' || buff[i] == ';') &&
+				buff[i + 1] != '&' && buff[i - 1] != '&')
 		{
 			str[t] = 0;
 			two(str);
@@ -101,7 +102,6 @@ int		first(char *buff)
 	str[t] = 0;
 	two(str);
 	free(str);
-	return (1);
 }
 
 int		main(int ac, char **av, char **env)

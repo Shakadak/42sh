@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 16:43:05 by croy             ###   ########.fr       */
+/*   Updated: 2014/03/27 18:13:31 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_in(char *str, char *all, int *i)
 		*i = *i + 1;
 	}
 	tmp[*i] = 0;
-	ft_in_norme(ded, tmp, fd);
+	ft_in_standard(ded, tmp, fd);
 	ft_free_all(ded);
 	return (1);
 }
