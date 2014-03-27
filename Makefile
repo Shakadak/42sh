@@ -6,7 +6,7 @@
 #    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
-#    Updated: 2014/03/27 16:58:05 by kelickel         ###   ########.fr        #
+#    Updated: 2014/03/27 21:09:54 by mde-jesu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,24 +37,39 @@ SRCS =	free_double.c \
 		what_to_exec.c \
 		ft_bzero.c
 
-IFLAGS = -Wall -Wextra -Werror -Iincludes -g
+ifeq ($(W),)
+	IFLAGS = -Wall -Wextra -Werror -Iincludes -g
+else
+	IFLAGS = -Wall -Wextra -Werror -Iincludes -O3
+endif
 
 CC = gcc $(IFLAGS)
 
+SRCDIR = ./srcs
+OBJDIR = ./objs
 OBJS = $(SRCS:.c=.o)
+OBJS_PREF = $(addprefix $(OBJDIR)/, $(OBJS))
 
-all: $(NAME)
+all: $(OBJDIR) $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS_PREF)
 		@echo "Creation de l'executable \033[1;34m$(NAME)\033[0m"
-		$(CC) -o $(NAME) $(OBJS)
+		$(CC) -o $(NAME) $(OBJS_PREF)
 
-%.o: srcs/%.c includes/ft_sh.h
-	$(CC) -c $<
+$(OBJDIR):
+	mkdir $(OBJDIR)
+
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@$(CC) -o $@ -c $< $(CFLAGS) $(INCDIR)
+
+
+#%.o: srcs/%.c includes/ft_sh.h
+#	$(CC) -c $<
 
 clean:
 		@echo "Remove \033[1;30m$(O)\033[0m"
-		rm -f $(OBJS)
+		rm -f $(OBJS_PREF)
 
 fclean:	clean
 		@echo "Remove \033[1;31m$(NAME)\033[0m"
