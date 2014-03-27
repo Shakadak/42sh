@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 10:53:16 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 11:37:41 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 16:29:20 by croy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int	ft_pipe(char *str)
 
 	arg = ft_strsplit_r(str);
 	pipe(fd);
-	k = fork();
-	if (k == 0)
+	if ((k = fork()) == 0)
 	{
 		close(fd[0]);
 		dup2(fd[1], 1);
@@ -62,9 +61,7 @@ int	ft_pipe(char *str)
 		wait(&k);
 		close(fd[0]);
 		ft_free_all(arg);
-		if (k == 0)
-			return (1);
-		else
+		if (k != 0)
 			return (-1);
 	}
 	return (1);
