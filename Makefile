@@ -6,7 +6,7 @@
 #    By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/17 09:59:41 by kelickel          #+#    #+#              #
-#    Updated: 2014/03/27 21:09:54 by mde-jesu         ###   ########.fr        #
+#    Updated: 2014/03/27 21:23:34 by mde-jesu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,31 +45,20 @@ endif
 
 CC = gcc $(IFLAGS)
 
-SRCDIR = ./srcs
-OBJDIR = ./objs
 OBJS = $(SRCS:.c=.o)
-OBJS_PREF = $(addprefix $(OBJDIR)/, $(OBJS))
 
-all: $(OBJDIR) $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJS_PREF)
+$(NAME): $(OBJS)
 		@echo "Creation de l'executable \033[1;34m$(NAME)\033[0m"
-		$(CC) -o $(NAME) $(OBJS_PREF)
+		$(CC) -o $(NAME) $(OBJS)
 
-$(OBJDIR):
-	mkdir $(OBJDIR)
-
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@$(CC) -o $@ -c $< $(CFLAGS) $(INCDIR)
-
-
-#%.o: srcs/%.c includes/ft_sh.h
-#	$(CC) -c $<
+%.o: srcs/%.c includes/ft_sh.h
+	$(CC) -c $<
 
 clean:
 		@echo "Remove \033[1;30m$(O)\033[0m"
-		rm -f $(OBJS_PREF)
+		rm -f $(OBJS)
 
 fclean:	clean
 		@echo "Remove \033[1;31m$(NAME)\033[0m"
