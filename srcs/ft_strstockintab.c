@@ -6,7 +6,7 @@
 /*   By: croy <croy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 21:38:50 by croy              #+#    #+#             */
-/*   Updated: 2014/03/27 15:42:59 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 20:56:46 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char			*epur_str(char *str, char c)
 			count++;
 		i++;
 	}
-	dup = malloc(sizeof(char) * count + 1);
+	dup = (char *)malloc(sizeof(char) * (count + 1));
 	i = 0;
 	dupl(str, dup, c);
 	return (dup);
