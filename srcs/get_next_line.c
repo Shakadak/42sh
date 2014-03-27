@@ -3,80 +3,134 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: croy <croy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/27 18:11:04 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 15:29:50 by kelickel         ###   ########.fr       */
+/*   Created: 2014/03/27 18:08:58 by croy              #+#    #+#             */
+/*   Updated: 2014/03/27 18:35:46 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-int					ft_strlenm(char *str, int *a)
+static	t_read		*ft_freeread(t_read *red, t_read *prev, t_read **start)
 {
-	int				i;
-
-	i = *a;
-	while (str[i] != 0 && str[i] != '\n')
-		i = i + 1;
-	return (i);
+	if (!prev)
+		*start = red->next;
+	else
+		prev->next = red->next;
+	free(red->read);
+	free(red);
+	if (!prev)
+		return (*start);
+	else
+		return (prev->next);
 }
 
-char				*to_line(char *buff, int fd, int *bck)
+static	t_read		*ft_newread(int fd)
 {
-	static int		i;
-	char			*str;
-	int				a;
+	t_read			*red;
+	void			*tmp;
+	int				ret;
 
-	a = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlenm(buff, &i) + 1));
-	if (str == 0)
-		return ((char *)-1);
-	while (buff[i] != '\n')
+	if (!(red = (t_read *)malloc(sizeof(t_read))))
+		return (NULL);
+	if (!(tmp = malloc(sizeof(char) * BUFF_SIZE)))
 	{
-		str[a++] = buff[i++];
-		if (buff[i] == 0)
+		free(red);
+		return (NULL);
+	}
+	if ((ret = read(fd, tmp, BUFF_SIZE)) < 0)
+	{
+		free(red);
+		free(tmp);
+		return (NULL);
+	}
+	red->read = (char *)tmp;
+	red->fd = fd;
+	red->size = ret;
+	red->next = NULL;
+	red->index = 0;
+	return (red);
+}
+
+static	int			ft_print(int n, t_read **tab, t_read **s, char** l)
+{
+	char			*tmpstr;
+	int				index;
+
+	if (!tab[0])
+		return (-1);
+	index = (tab[0])->index;
+	if (n == -1 || !(tmpstr = (char *)malloc(sizeof (char) * (n + 1))))
+		return (-1);
+	*l = tmpstr;
+	while (n--)
+	{
+		*tmpstr++ = (tab[0])->read[index++];
+		if (index == (tab[0])->size)
 		{
-			*bck = read(fd, buff, 511);
-			if (*bck == 0)
-				return (0);
-			else if (*bck == -1)
-				return ((char *)-1);
-			str[a] = 0;
-			buff[*bck] = 0;
-			i = 0;
+			tab[0] = ft_freeread(tab[0], tab[1], s);
+			index = 0;
 		}
 	}
-	str[a] = 0;
-	if (buff[i + 1] != 0)
-		i++;
-	else
+	*tmpstr = 0;
+	if (!tab[0] || (index == tab[0]->size && tab[0]->size < BUFF_SIZE))
+		return (0);
+	tab[0]->index = index + 1;
+	if (tab[0]->index == tab[0]->size)
+		tab[0] = ft_freeread(tab[0], tab[1], s);
+	return (1);
+}
+
+static	int			ft_findendl(int fd, t_read *red)
+{
+	int				index;
+	int				size;
+	t_read			*tmplst;
+
+	size = 0;
+	index = red->index;
+	while (red->read[index] != '\n' && index < red->size)
 	{
-		i = 0;
-		*bck = 0;
+		index++;
+		size++;
+		if (index == red->size && red->size == BUFF_SIZE)
+		{
+			if (!(tmplst = ft_newread(fd)))
+				return (-1);
+			tmplst->next = red->next;
+			red->next = tmplst;
+			red = tmplst;
+			index = 0;
+		}
 	}
-	return (str);
+	return (size);
 }
 
 int					get_next_line(int fd, char **line)
 {
-	static char		buff[4096];
-	static int		a;
+	static t_read	*start = NULL;
+	t_read			*red;
+	t_read			*prevtmp;
+	t_read			*tab[2];
 
 	if (fd < 0)
 		return (-1);
-	if (a == 0)
-	{
-		a = read(fd, buff, 4095);
-		if (a > 0)
-			buff[a] = 0;
-		else
-			return (0);
-	}
-	*line = to_line(buff, fd, &a);
-	if (*line == (char *)0)
-		return (0);
-	else if (*line == (char *)-1)
+	prevtmp = NULL;
+	if (!start)
+		start = ft_newread(fd);
+	if (!(red = start))
 		return (-1);
-	return (1);
+	while (red->fd != fd)
+	{
+		if (!(red->next))
+			red->next = ft_newread(fd);
+		prevtmp = red;
+		red = red->next;
+	}
+	if (!red || !start)
+		return (-1);
+	tab[0] = red;
+	tab[1] = prevtmp;
+	return (ft_print(ft_findendl(fd, red), tab, &start, line));
 }

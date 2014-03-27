@@ -6,7 +6,7 @@
 /*   By: kelickel <kelickel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 10:41:26 by kelickel          #+#    #+#             */
-/*   Updated: 2014/03/27 18:12:32 by kelickel         ###   ########.fr       */
+/*   Updated: 2014/03/27 18:38:48 by kelickel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,16 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# define BUFF_SIZE 4096
 
-int					g_check_exec;
-char				**g_environ;
+typedef struct		s_read
+{
+	int				size;
+	int				index;
+	int				fd;
+	char			*read;
+	struct s_read	*next;
+}					t_read;
 
 typedef struct		s_root
 {
@@ -30,6 +37,8 @@ typedef struct		s_root
 }					t_root;
 
 t_root				*g_list;
+int					g_check_exec;
+char				**g_environ;
 
 int					ft_out(char *str, char *all, int *i);
 void				affp(void);
